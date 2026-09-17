@@ -9,30 +9,32 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Контейнер для кнопок (держит их по центру) */
 .container {
     width: 100%;
     max-width: 520px;
-    padding: 20px;
+    padding: 0 20px;
     box-sizing: border-box;
 }
 
-/* Шапка */
-.header-box {
+/* Растягиваем шапку на 100% ширины экрана */
+.header-full {
     width: 100%;
-    border-radius: 18px;
-    overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
     background: #151018;
+    line-height: 0;
 }
 
-.header-box img {
+.header-full img {
     width: 100%;
     height: auto;
     display: block;
+    max-height: 350px;
+    object-fit: cover;
 }
 
 /* Кнопки */
@@ -94,17 +96,18 @@ body {
     object-fit: cover;
 }
 
-/* Подвал */
-.footer-box {
+/* Растягиваем подвал на 100% ширины экрана */
+.footer-full {
     width: 100%;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    margin-top: auto;
     background: #151018;
+    line-height: 0;
 }
 
-.footer-box img {
+.footer-full img {
     width: 100%;
     height: auto;
     display: block;
+    max-height: 350px;
+    object-fit: cover;
 }
