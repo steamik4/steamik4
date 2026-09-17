@@ -21,11 +21,12 @@ body {
     box-sizing: border-box;
 }
 
-/* Растягиваем шапку на 100% ширины экрана */
+/* Шапка на абсолютно всю ширину экрана */
 .header-full {
     width: 100%;
-    margin-bottom: 20px;
-    background: #151018;
+    margin: 0;
+    padding: 0;
+    background: #000;
     line-height: 0;
 }
 
@@ -33,8 +34,8 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    max-height: 350px;
-    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 /* Кнопки */
@@ -42,7 +43,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 20px;
+    margin: 25px 0;
 }
 
 .big-button {
@@ -96,11 +97,11 @@ body {
     object-fit: cover;
 }
 
-/* Растягиваем подвал на 100% ширины экрана */
+/* Подвал на всю ширину экрана */
 .footer-full {
     width: 100%;
     margin-top: auto;
-    background: #151018;
+    background: #000;
     line-height: 0;
 }
 
@@ -108,6 +109,6 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    max-height: 350px;
-    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
 }
