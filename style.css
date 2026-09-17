@@ -1,5 +1,5 @@
 body {
-    background-color: #0b070d; /* Чистый темный фон без картинки */
+    background-color: #0b070d;
     color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
@@ -21,10 +21,10 @@ body {
 /* Шапка на всю ширину экрана */
 .header-full {
     width: 100%;
-    height: 250px;
+    height: 320px;
     background-image: url('header.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: center top;
     background-repeat: no-repeat;
     margin-bottom: 10px;
 }
@@ -93,10 +93,10 @@ body {
 /* Подвал на всю ширину экрана */
 .footer-full {
     width: 100%;
-    height: 250px;
+    height: 320px;
     background-image: url('footer.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: center bottom;
     background-repeat: no-repeat;
     margin-top: auto;
 }
