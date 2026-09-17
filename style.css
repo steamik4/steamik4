@@ -21,7 +21,7 @@ body {
 /* Шапка */
 .header-wrap {
     width: 100%;
-    max-width: 520px; /* Ограничиваем ширину шапки, чтобы она не растягивалась */
+    max-width: 520px;
     padding: 20px 20px 10px 20px;
     box-sizing: border-box;
     text-align: center;
@@ -98,7 +98,7 @@ body {
 /* Подвал */
 .footer-wrap {
     width: 100%;
-    max-width: 520px; /* Ограничиваем ширину подвала */
+    max-width: 520px;
     padding: 10px 20px 20px 20px;
     box-sizing: border-box;
     text-align: center;
