@@ -21,21 +21,16 @@ body {
     box-sizing: border-box;
 }
 
-/* Шапка на абсолютно всю ширину экрана */
+/* Шапка на всю ширину с фоновой картинкой */
 .header-full {
     width: 100%;
-    margin: 0;
-    padding: 0;
-    background: #000;
-    line-height: 0;
-}
-
-.header-full img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 0;
-    box-shadow: none;
+    height: 220px; /* Можете изменить высоту (например, 250px или 180px) под вашу картинку */
+    background-image: url('header.png');
+    background-size: contain; /* Картинка будет видна целиком без обрезки */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #0b070d; /* Цвет фона по бокам, если экран шире картинки */
+    margin-bottom: 10px;
 }
 
 /* Кнопки */
@@ -43,7 +38,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 25px 0;
+    margin: 20px 0;
 }
 
 .big-button {
@@ -97,18 +92,14 @@ body {
     object-fit: cover;
 }
 
-/* Подвал на всю ширину экрана */
+/* Подвал на всю ширину с фоновой картинкой */
 .footer-full {
     width: 100%;
+    height: 220px; /* Высота подвала */
+    background-image: url('footer.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #0b070d;
     margin-top: auto;
-    background: #000;
-    line-height: 0;
-}
-
-.footer-full img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 0;
-    box-shadow: none;
 }
