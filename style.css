@@ -1,5 +1,5 @@
 body {
-    background-color: #2b1d31; /* Тёмно-фиолетовый фон */
+    background-color: #2b1d31;
     color: #ffffff;
     font-family: sans-serif;
     margin: 0;
@@ -14,27 +14,40 @@ body {
     padding: 20px;
 }
 
-/* Шапка с баннером */
+/* Шапка с фоновым баннером */
 .header {
-    background: url('img/баннер.png') center/cover no-repeat; /* если есть шапка */
-    height: 150px;
-    border-radius: 15px;
+    background: url('img/баннер.png') center / cover no-repeat;
+    height: 160px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.header-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-overlay h1 {
     font-family: 'Oi', cursive;
-    font-size: 28px;
-    letter-spacing: 2px;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
 }
 
-/* Основной макет: сетка под карточки */
+/* Сетка: две колонки, как в оригинале */
 .main-content {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Две колонки, как на оригинале */
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
@@ -81,7 +94,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Блок статистики */
+/* Правая колонка со статистикой */
 .stats-section {
     display: flex;
     flex-direction: column;
@@ -94,11 +107,13 @@ body {
     align-items: flex-start;
     position: relative;
     min-height: 90px;
+    box-sizing: border-box;
 }
 
 .label-top-left {
     font-size: 14px;
     line-height: 1.3;
+    margin: 0;
 }
 
 .value-bottom-right {
@@ -107,15 +122,16 @@ body {
     color: #dfd8e3;
 }
 
-/* Секция отзывов внизу */
+/* Секция отзывов внизу (три колонки) */
 .reviews-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .review-card-img img {
     width: 100%;
     border-radius: 12px;
+    display: block;
 }
