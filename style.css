@@ -121,27 +121,27 @@ body {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 220px;  /* Увеличенная ширина */
-    height: 380px; /* Увеличенная высота */
+    width: 280px;  /* Увеличенная ширина */
+    height: 480px; /* Увеличенная высота */
     object-fit: cover;
-    border-radius: 18px;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
     z-index: 5;
     opacity: 0.95;
 }
 
-/* Аккуратный отступ от центрального блока с кнопками */
+/* Расчет отступов с зазором под увеличенные видео */
 .left-video {
-    left: calc(50% - 260px - 220px - 20px);
+    left: calc(50% - 260px - 280px - 25px);
 }
 
 .right-video {
-    right: calc(50% - 260px - 220px - 20px);
+    right: calc(50% - 260px - 280px - 25px);
 }
 
-/* Автоматически скрываем видео на экранах меньше 1020px */
-@media (max-width: 1020px) {
+/* Автоматически скрываем видео на экранах меньше 1140px */
+@media (max-width: 1140px) {
     .side-video {
         display: none;
     }
