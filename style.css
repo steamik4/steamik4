@@ -10,7 +10,7 @@ body {
     min-height: 100vh;
 }
 
-/* Контейнер для кнопок (держит их по центру) */
+/* Общий контейнер (ограничивает ширину по центру) */
 .container {
     width: 100%;
     max-width: 520px;
@@ -18,16 +18,20 @@ body {
     box-sizing: border-box;
 }
 
-/* Шапка на весь экран */
+/* Шапка */
 .header-wrap {
     width: 100%;
-    line-height: 0;
+    max-width: 520px; /* Ограничиваем ширину шапки, чтобы она не растягивалась */
+    padding: 20px 20px 10px 20px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .header-img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 12px;
 }
 
 /* Кнопки */
@@ -35,7 +39,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 20px 0;
+    margin: 10px 0;
     width: 100%;
 }
 
@@ -91,10 +95,13 @@ body {
     object-fit: cover;
 }
 
-/* Подвал на весь экран */
+/* Подвал */
 .footer-wrap {
     width: 100%;
-    line-height: 0;
+    max-width: 520px; /* Ограничиваем ширину подвала */
+    padding: 10px 20px 20px 20px;
+    box-sizing: border-box;
+    text-align: center;
     margin-top: auto;
 }
 
@@ -102,4 +109,5 @@ body {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 12px;
 }
