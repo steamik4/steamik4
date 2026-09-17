@@ -1,0 +1,62 @@
+body {
+    background-color: #121212; /* Тёмный фон */
+    color: #ffffff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 450px; /* Ограничение ширины под мобильные устройства */
+}
+
+header h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Стили для карточек-ссылок */
+.card, .shop-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e1e1e;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.card:hover, .shop-card:hover {
+    transform: scale(1.02); /* Легкое увеличение при наведении */
+}
+
+.card-text h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.card-text p {
+    margin: 0;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.card-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Стили для отзывов и картинок */
+.reviews-section img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
