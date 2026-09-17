@@ -1,38 +1,39 @@
 body {
-    background-color: #0b070d; /* Чистый темный фон без картинки */
+    background-color: #0b070d;
     color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px 0; /* Небольшие отступы сверху и снизу страницы */
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
-/* Общий контейнер для кнопок (по центру) */
+/* Главный центрированный контейнер */
 .container {
     width: 100%;
     max-width: 520px;
     padding: 0 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Единый отступ между всеми элементами */
 }
 
-/* ШАПКА НА ВСЮ ШИРИНУ ЭКРАНА */
+/* Шапка */
 .header-wrap {
     width: 100%;
-    background-color: #0b070d;
     text-align: center;
-    line-height: 0; /* Убирает лишние отступы под картинкой */
-    margin-bottom: 10px;
+    line-height: 0;
 }
 
 .header-img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover;
-    max-height: 280px; /* Ограничиваем максимальную высоту, чтобы не вытягивалось слишком сильно */
+    border-radius: 16px;
 }
 
 /* Кнопки */
@@ -40,7 +41,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 10px 0;
     width: 100%;
 }
 
@@ -96,21 +96,18 @@ body {
     object-fit: cover;
 }
 
-/* ПОДВАЛ НА ВСЮ ШИРИНУ ЭКРАНА */
+/* Подвал */
 .footer-wrap {
     width: 100%;
-    background-color: #0b070d;
     text-align: center;
     line-height: 0;
-    margin-top: auto;
 }
 
 .footer-img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover;
-    max-height: 280px;
+    border-radius: 16px;
 }
 
 /* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
