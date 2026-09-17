@@ -1,7 +1,9 @@
-/* Общий фон сайта — темная текстура с дождем */
 body {
-    background: #000000 url('img/bg.png') repeat center center fixed;
+    background-color: #0b070d;
+    background-image: url('bg.png');
+    background-repeat: repeat;
     background-size: cover;
+    background-attachment: fixed;
     color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
@@ -12,30 +14,28 @@ body {
 
 .container {
     width: 100%;
-    max-width: 550px;
+    max-width: 520px;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Шапка (картинка с ночным городом) */
-.header {
+/* Шапка */
+.header-box {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-    line-height: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    background: #151018;
 }
 
-/* Картинки внутри шапки и подвала, чтобы они идеально вписывались */
-.bg-img {
+.header-box img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover;
 }
 
-/* Основной блок с кнопками */
+/* Кнопки */
 .main-content {
     display: flex;
     flex-direction: column;
@@ -43,10 +43,9 @@ body {
     margin-bottom: 20px;
 }
 
-/* Большие кнопки */
 .big-button {
-    background: rgba(25, 18, 28, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(26, 18, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 18px 22px;
     border-radius: 18px;
     text-decoration: none;
@@ -55,37 +54,37 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s ease, background 0.2s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .big-button:hover {
     transform: scale(1.02);
-    background: rgba(40, 28, 45, 0.95);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(42, 28, 48, 0.95);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .button-text h2 {
-    margin: 0 0 5px 0;
-    font-size: 19px;
-    font-family: 'Oi', cursive, sans-serif; /* Для заголовка шрифт Ок, а дальше обычный */
-    letter-spacing: 1px;
-    font-weight: normal;
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #ffffff;
 }
 
 .button-text p {
     margin: 0;
-    font-size: 13px;
-    color: #a89bb0;
+    font-size: 12px;
+    color: #b5a4bd;
 }
 
-/* Иконки сбоку кнопок */
+/* Иконки в кнопках */
 .button-img {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.15);
     background: #000;
 }
 
@@ -95,11 +94,17 @@ body {
     object-fit: cover;
 }
 
-/* Подвал сайта (footer с ветками и луной) */
-.footer {
+/* Подвал */
+.footer-box {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-    line-height: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    background: #151018;
+}
+
+.footer-box img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
