@@ -1,5 +1,7 @@
+/* Общий фон сайта — темная текстура с дождем */
 body {
-    background-color: #2b1d31;
+    background: url('img/bg.png') repeat center center fixed;
+    background-size: cover;
     color: #ffffff;
     font-family: sans-serif;
     margin: 0;
@@ -10,128 +12,83 @@ body {
 
 .container {
     width: 100%;
-    max-width: 900px;
+    max-width: 600px;
     padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Шапка с фоновым баннером */
+/* Шапка (картинка с ночным городом) */
 .header {
-    background: url('img/баннер.png') center / cover no-repeat;
-    height: 160px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-    overflow: hidden;
+    background: url('img/header.png') center / cover no-repeat;
+    height: 180px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-.header-overlay {
-    background: rgba(0, 0, 0, 0.3);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-overlay h1 {
-    font-family: 'Oi', cursive;
-    font-size: 26px;
-    letter-spacing: 3px;
-    color: #ffffff;
-    margin: 0;
-    text-align: center;
-}
-
-/* Сетка: две колонки, как в оригинале */
+/* Основной блок с кнопками */
 .main-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.links-section {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 20px;
 }
 
-/* Карточки-ссылки */
-.link-card, .stat-bubble {
-    background: #3c2744;
-    padding: 18px;
-    border-radius: 16px;
+/* Большие кнопки */
+.big-button {
+    background: rgba(30, 20, 35, 0.85);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 25px;
+    border-radius: 20px;
     text-decoration: none;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease, background 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-.link-card:hover, .stat-bubble:hover {
+.big-button:hover {
     transform: scale(1.02);
+    background: rgba(45, 30, 52, 0.95);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
-.text h3 {
-    margin: 0 0 5px 0;
-    font-size: 16px;
+.button-text h2 {
+    margin: 0 0 6px 0;
+    font-size: 20px;
+    font-family: 'Oi', cursive;
+    letter-spacing: 1px;
 }
 
-.text p {
+.button-text p {
     margin: 0;
-    font-size: 11px;
-    color: #d1cbd4;
+    font-size: 13px;
+    color: #bfaec6;
 }
 
-/* Круглые иконки */
-.circle-img {
-    width: 45px;
-    height: 45px;
+/* Иконки сбоку кнопок */
+.button-img {
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: #000;
 }
 
-/* Правая колонка со статистикой */
-.stats-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.stat-bubble {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    min-height: 90px;
-    box-sizing: border-box;
-}
-
-.label-top-left {
-    font-size: 14px;
-    line-height: 1.3;
-    margin: 0;
-}
-
-.value-bottom-right {
-    margin-top: auto;
-    font-size: 12px;
-    color: #dfd8e3;
-}
-
-/* Секция отзывов внизу (три колонки) */
-.reviews-section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.review-card-img img {
+.button-img img {
     width: 100%;
-    border-radius: 12px;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Подвал сайта (footer с ветками и луной) */
+.footer {
+    background: url('img/footer.png') center / cover no-repeat;
+    height: 220px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
