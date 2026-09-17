@@ -121,26 +121,27 @@ body {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 160px;
-    height: 280px;
+    width: 220px;  /* Увеличенная ширина */
+    height: 380px; /* Увеличенная высота */
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
     z-index: 5;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
+/* Аккуратный отступ от центрального блока с кнопками */
 .left-video {
-    left: 40px;
+    left: calc(50% - 260px - 220px - 20px);
 }
 
 .right-video {
-    right: 40px;
+    right: calc(50% - 260px - 220px - 20px);
 }
 
-/* Автоматически скрываем видео на экранах уже 1150px (телефоны и планшеты) */
-@media (max-width: 1150px) {
+/* Автоматически скрываем видео на экранах меньше 1020px */
+@media (max-width: 1020px) {
     .side-video {
         display: none;
     }
