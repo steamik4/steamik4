@@ -1,10 +1,5 @@
 body {
-    background-color: #0b070d;
-    background-image: url('bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: #0b070d; /* Чистый темный фон без картинки */
     color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
