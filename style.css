@@ -111,3 +111,28 @@ body {
     display: block;
     border-radius: 12px;
 }
+
+/* --- НАСТРОЙКА АНИМАЦИИ ПОЯВЛЕНИЯ --- */
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-in {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Задержка появления для каждого элемента по очереди */
+.header-anim  { animation-delay: 0.1s; }
+.btn-anim-1   { animation-delay: 0.25s; }
+.btn-anim-2   { animation-delay: 0.4s; }
+.btn-anim-3   { animation-delay: 0.55s; }
+.footer-anim  { animation-delay: 0.7s; }
