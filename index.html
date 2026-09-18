@@ -21,7 +21,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- ЭКРАН ТРЕВОГИ / АДМИН-ПАНЕЛИ --- */
+        /* --- ЭКРАН ТРЕВОГИ / АДМИН-ПАНЕЛИ (С ДРОЖАНИЕМ) --- */
         .danger-screen {
             position: fixed;
             top: 0;
@@ -433,7 +433,7 @@
             50% { opacity: 0; }
         }
 
-        /* --- КНОПКИ --- */
+        /* --- КНОПКИ (С НЕОНОВОЙ ОБВОДКОЙ И ПРИБЛИЖЕНИЕМ) --- */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -463,7 +463,7 @@
             transform: translateY(-2px) scale(1.01);
             background: rgba(42, 28, 48, 0.95);
             border-color: rgba(176, 102, 255, 0.8);
-            box-shadow: 0 0 15px rgba(176, 102, 255, 0.5);
+            box-shadow: 0 0 20px rgba(176, 102, 255, 0.6), inset 0 0 10px rgba(176, 102, 255, 0.2);
         }
 
         .button-text h2 {
@@ -733,7 +733,7 @@
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
         </a>
 
-        <!-- Кнопка «Мои проекты» теперь строго под кнопкой «Написать в ЛС» -->
+        <!-- Кнопка «Мои проекты» -->
         <a href="#" id="openProjectsBtn" class="big-button animate-in btn-projects">
             <div class="button-text">
                 <h2>Мои проекты</h2>
