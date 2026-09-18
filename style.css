@@ -75,13 +75,23 @@ body {
     z-index: 10;
 }
 
-/* Шапка */
+/* --- ШАПКА В КРАСИВОЙ РАМКЕ --- */
 .header-wrap {
     width: 100%;
     text-align: center;
     line-height: 0;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 18px; /* Совпадает со скруглением кнопок */
+    background: rgba(26, 18, 30, 0.9);
+    border: 1px solid rgba(140, 82, 255, 0.3); /* Фиолетовая неоновая рамка */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(140, 82, 255, 0.15); /* Легкое свечение */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-wrap:hover {
+    border-color: rgba(140, 82, 255, 0.7);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(140, 82, 255, 0.3);
 }
 
 .header-img {
