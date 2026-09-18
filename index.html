@@ -38,6 +38,19 @@
             <img src="header.png" alt="Lyshkin" class="header-img">
         </div>
 
+        <!-- Приветственный терминал с эффектом печатной машинки -->
+        <div class="terminal-card animate-in terminal-anim">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">lyshkin@server:~</span>
+            </div>
+            <div class="terminal-body">
+                <p><span class="prompt">$</span> <span class="typed-text"></span><span class="cursor">|</span></p>
+            </div>
+        </div>
+
         <!-- Основной контент (кнопки) -->
         <main class="main-content">
             <a href="https://t.me/+EkeKHs3abK8wOWMy" class="big-button animate-in btn-anim-1">
@@ -72,7 +85,7 @@
         </main>
 
         <!-- Блок с информацией о навыках -->
-        <div class="bio-card animate-in btn-anim-3">
+        <div class="bio-card animate-in bio-anim">
             <h3>Обо мне & Навыки</h3>
             <p>Бэкенд-разработчик. Создаю собственные проекты на Python и автоматизирую процессы.</p>
             <div class="skills-tags">
@@ -90,15 +103,16 @@
             </div>
         </div>
 
-        <a href="https://t.me/lyshk1n" class="big-button animate-in btn-anim-3">
-    <div class="button-text">
-        <h2>Написать в ЛС</h2>
-        <p>Остались вопросы? Свяжись со мной</p>
-    </div>
-    <div class="button-img">
-        <img src="myphoto.png" alt="Мое фото">
-    </div>
-</a>
+        <!-- Кнопка «Написать в ЛС» (теперь точная копия остальных кнопок) -->
+        <a href="https://t.me/lyshk1n" class="big-button animate-in ls-anim">
+            <div class="button-text">
+                <h2>Написать в ЛС</h2>
+                <p>Остались вопросы? Свяжись со мной</p>
+            </div>
+            <div class="button-img">
+                <img src="myphoto.png" alt="Мое фото">
+            </div>
+        </a>
 
         <!-- Подвал -->
         <div class="footer-wrap animate-in footer-anim">
@@ -106,5 +120,25 @@
         </div>
     </div>
 
+    <!-- Скрипт эффекта печатной машинки -->
+    <script>
+        const textToPrint = "Привет! Добро пожаловать. Backend & Code 🚀";
+        const typedTextSpan = document.querySelector(".typed-text");
+        
+        let charIndex = 0;
+        const typingSpeed = 45; // Скорость печати (мс на 1 букву)
+
+        function typeText() {
+            if (charIndex < textToPrint.length) {
+                typedTextSpan.textContent += textToPrint.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, typingSpeed);
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            setTimeout(typeText, 400);
+        });
+    </script>
 </body>
 </html>
