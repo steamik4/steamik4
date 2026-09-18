@@ -38,9 +38,9 @@
             <img src="header.png" alt="Lyshkin" class="header-img">
         </div>
 
-        <!-- Хакерский терминал Пентагона с индикатором сети -->
+        <!-- Хакерский терминал Пентагона с индикатором сети и пасхалкой -->
         <div class="terminal-card animate-in terminal-anim">
-            <div class="terminal-header">
+            <div class="terminal-header" id="terminal-toggle" title="Кликни, чтобы открыть консоль команд">
                 <div class="terminal-dots">
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
@@ -50,11 +50,20 @@
                     <span class="pulse-dot"></span>
                     <span class="status-text">ONLINE</span>
                 </div>
-                <span class="terminal-title">root@lyshkin:~#</span>
+                <span class="terminal-title">root@lyshkin:~# [click]</span>
             </div>
             <div class="terminal-body hacker-body">
                 <div class="terminal-lines"></div>
                 <p><span class="prompt">></span> <span class="typed-text"></span><span class="cursor">|</span></p>
+                
+                <!-- Скрытая интерактивная консоль -->
+                <div class="secret-console" id="secretConsole">
+                    <div id="commandHistory"></div>
+                    <div class="console-input-line">
+                        <span class="prompt">root@lyshkin:~#</span>
+                        <input type="text" id="commandInput" placeholder="введи команду (help)..." autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -135,7 +144,7 @@
         </div>
     </div>
 
-    <!-- Скрипт хакерского взлома и печатной машинки -->
+    <!-- Скрипт хакерского взлома, печатной машинки и консоли команд -->
     <script>
         const linesContainer = document.querySelector(".terminal-lines");
         const typedTextSpan = document.querySelector(".typed-text");
@@ -188,6 +197,72 @@ Backend & Code`;
         window.addEventListener("DOMContentLoaded", () => {
             setTimeout(showLogs, 500);
         });
+
+        // Скрипт интерактивной консоли (пасхалка)
+        const terminalToggle = document.getElementById("terminal-toggle");
+        const secretConsole = document.getElementById("secretConsole");
+        const commandInput = document.getElementById("commandInput");
+        const commandHistory = document.getElementById("commandHistory");
+
+        terminalToggle.addEventListener("click", () => {
+            secretConsole.classList.toggle("active");
+            if (secretConsole.classList.contains("active")) {
+                commandInput.focus();
+            }
+        });
+
+        commandInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                let cmd = commandInput.value.trim().toLowerCase();
+                let response = "";
+
+                let userLine = document.createElement("div");
+                userLine.className = "history-item";
+                userLine.innerHTML = `<span style="color: #27c93f;">root@lyshkin:~#</span> ${escapeHtml(commandInput.value)}`;
+                commandHistory.appendChild(userLine);
+
+                switch(cmd) {
+                    case "help":
+                        response = "Доступные команды: <br>- <b>about</b>: информация обо мне<br>- <b>skills</b>: стек технологий<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo rm -rf /</b>: удалить всё<br>- <b>clear</b>: очистить консоль";
+                        break;
+                    case "about":
+                        response = "17 лет. Бэкенд-разработчик, пишу код, создаю проекты.";
+                        break;
+                    case "skills":
+                        response = "Python, FastAPI, Flutter, C++, C#, JavaScript, Kotlin, Rust, Go, SQL.";
+                        break;
+                    case "matrix":
+                        response = "Wake up, Neo... The Matrix has you. 🐇";
+                        document.body.style.filter = "hue-rotate(90deg) contrast(150%)";
+                        setTimeout(() => { document.body.style.filter = "none"; }, 4000);
+                        break;
+                    case "sudo rm -rf /":
+                    case "sudo rm -rf":
+                        response = "⚠️ ВНИМАНИЕ: Самоуничтожение отменено протоколами безопасности Lyshkin.";
+                        break;
+                    case "clear":
+                        commandHistory.innerHTML = "";
+                        commandInput.value = "";
+                        return;
+                    default:
+                        response = cmd ? `Команда '${escapeHtml(cmd)}' не найдена. Введите 'help'.` : "";
+                }
+
+                if (response) {
+                    let respLine = document.createElement("div");
+                    respLine.className = "history-item resp";
+                    respLine.innerHTML = response;
+                    commandHistory.appendChild(respLine);
+                }
+
+                commandInput.value = "";
+                secretConsole.scrollTop = secretConsole.scrollHeight;
+            }
+        });
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
     </script>
 </body>
 </html>
