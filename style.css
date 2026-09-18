@@ -14,6 +14,87 @@ body {
     scroll-behavior: smooth;
 }
 
+/* --- ЭКРАН КРИТИЧЕСКОЙ УГРОЗЫ --- */
+.danger-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 0, 0, 0.96);
+    border: 6px solid #ff1e1e;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.danger-screen.active {
+    opacity: 1;
+    pointer-events: auto;
+    animation: screen-shake 0.2s infinite ease-in-out;
+}
+
+@keyframes screen-shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-4px, 3px); }
+    50% { transform: translate(3px, -3px); }
+    75% { transform: translate(-2px, -2px); }
+    100% { transform: translate(2px, 2px); }
+}
+
+.danger-content {
+    font-family: monospace;
+    color: #ff4d4d;
+    padding: 20px;
+}
+
+.danger-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    color: #ff1e1e;
+    text-shadow: 0 0 15px rgba(255, 30, 30, 0.8);
+    letter-spacing: 2px;
+}
+
+.danger-screen p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #ffcccc;
+}
+
+.danger-sub {
+    font-size: 13px;
+    color: #ff8080;
+    margin-bottom: 25px !important;
+}
+
+.danger-loader {
+    font-size: 14px;
+    color: #27c93f;
+    font-weight: bold;
+    animation: blink 0.6s infinite;
+}
+
+/* Плавное исчезновение основного контейнера */
+.container {
+    width: 100%;
+    max-width: 520px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
 /* --- АНИМАЦИЯ ПАДАЮЩЕГО СНЕГА --- */
 .snow-container {
     position: fixed;
@@ -63,18 +144,6 @@ body {
 .snowflake:nth-child(14) { left: 15%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 5s; }
 .snowflake:nth-child(15) { left: 45%; width: 2px; height: 2px; animation-duration: 7s;  animation-delay: 2.2s;}
 .snowflake:nth-child(16) { left: 85%; width: 5px; height: 5px; animation-duration: 8.5s;animation-delay: 1.8s;}
-
-/* Главный центрированный контейнер */
-.container {
-    width: 100%;
-    max-width: 520px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 10;
-}
 
 /* --- ШАПКА --- */
 .header-wrap {
@@ -225,7 +294,7 @@ body {
 }
 
 .history-item.resp {
-    color: #b5a4bd;
+    color: #27c93f;
     padding-left: 10px;
     border-left: 2px solid #27c93f;
 }
