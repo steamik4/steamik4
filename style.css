@@ -117,6 +117,13 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s;
+}
+
+.terminal-header:hover {
+    opacity: 0.8;
 }
 
 .terminal-dots {
@@ -187,6 +194,66 @@ body {
     font-weight: bold;
 }
 
+/* Скрытая интерактивная консоль */
+.secret-console {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    margin-top: 0px;
+}
+
+.secret-console.active {
+    max-height: 180px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(39, 201, 63, 0.3);
+    overflow-y: auto;
+}
+
+#commandHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.history-item {
+    font-size: 12px;
+    font-family: monospace;
+    color: #e0d0eb;
+    word-break: break-word;
+}
+
+.history-item.resp {
+    color: #b5a4bd;
+    padding-left: 10px;
+    border-left: 2px solid #27c93f;
+}
+
+.console-input-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.console-input-line .prompt {
+    color: #27c93f;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: monospace;
+    white-space: nowrap;
+}
+
+#commandInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #27c93f;
+    font-family: monospace;
+    font-size: 12px;
+    width: 100%;
+}
+
 /* Мигающий курсор */
 .cursor {
     display: inline-block;
@@ -225,7 +292,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Фиолетовое неоновое свечение и скейл при наведении */
 .big-button:hover {
     transform: translateY(-2px) scale(1.01);
     background: rgba(42, 28, 48, 0.95);
@@ -233,7 +299,6 @@ body {
     box-shadow: 0 0 15px rgba(176, 102, 255, 0.5), 0 0 30px rgba(140, 82, 255, 0.3);
 }
 
-/* Глитч-слои */
 .big-button::before,
 .big-button::after {
     content: '';
@@ -304,7 +369,6 @@ body {
     color: #b5a4bd;
 }
 
-/* Иконки в кнопках */
 .button-img {
     width: 60px;
     height: 60px;
