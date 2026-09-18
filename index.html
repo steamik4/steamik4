@@ -103,7 +103,7 @@
             transition: opacity 0.3s ease;
         }
 
-        /* --- СТРАНИЦА ПРОЕКТОВ (МОДАЛКА / ВИД) --- */
+        /* --- СТРАНИЦА ПРОЕКТОВ (ПОЛНОЦЕННАЯ И БОЛЬШАЯ) --- */
         .projects-page {
             position: fixed;
             top: 0;
@@ -115,7 +115,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 30px 20px;
             box-sizing: border-box;
             overflow-y: auto;
             opacity: 0;
@@ -130,23 +130,23 @@
 
         .projects-container {
             width: 100%;
-            max-width: 520px;
+            max-width: 650px; /* Сделали шире */
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            padding-bottom: 40px;
+            gap: 24px;
+            padding-bottom: 60px;
         }
 
         .back-button {
             background: rgba(26, 18, 30, 0.9);
             border: 1px solid rgba(176, 102, 255, 0.4);
             color: #ffffff;
-            padding: 12px 20px;
+            padding: 12px 22px;
             border-radius: 14px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 15px;
             font-family: inherit;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             align-self: flex-start;
@@ -159,36 +159,36 @@
         }
 
         .project-card-full {
-            background: rgba(26, 18, 30, 0.9);
-            border: 1px solid rgba(176, 102, 255, 0.3);
-            padding: 20px;
-            border-radius: 18px;
+            background: rgba(26, 18, 30, 0.95);
+            border: 1px solid rgba(176, 102, 255, 0.4);
+            padding: 30px;
+            border-radius: 22px;
             box-sizing: border-box;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(176, 102, 255, 0.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(176, 102, 255, 0.15);
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 18px;
         }
 
         .project-card-full h3 {
             margin: 0;
-            font-size: 20px;
+            font-size: 24px;
             color: #ffffff;
         }
 
         .project-card-full p {
             margin: 0;
-            font-size: 14px;
+            font-size: 15px;
             color: #b5a4bd;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .project-video-wrap {
             width: 100%;
-            height: 280px;
-            border-radius: 12px;
+            height: 380px; /* Увеличили высоту видео */
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             background: #000;
         }
 
@@ -583,13 +583,13 @@
 
         .header-anim    { animation-delay: 0.1s; }
         .terminal-anim { animation-delay: 0.2s; }
-        .btn-anim-0    { animation-delay: 0.25s; }
         .btn-anim-1    { animation-delay: 0.3s; }
         .btn-anim-2    { animation-delay: 0.4s; }
         .btn-anim-3    { animation-delay: 0.5s; }
         .bio-anim      { animation-delay: 0.6s; }
         .ls-anim       { animation-delay: 0.7s; }
-        .footer-anim   { animation-delay: 0.8s; }
+        .btn-projects  { animation-delay: 0.8s; }
+        .footer-anim   { animation-delay: 0.9s; }
     </style>
 </head>
 <body>
@@ -604,7 +604,7 @@
         </div>
     </div>
 
-    <!-- Страница «Мои проекты» (открывается по клику) -->
+    <!-- Страница «Мои проекты» (полноэкранная красивая страница) -->
     <div id="projectsPage" class="projects-page">
         <div class="projects-container">
             <button class="back-button" id="backButton">← Назад</button>
@@ -700,17 +700,6 @@
 
         <!-- Кнопки -->
         <main class="main-content">
-            <!-- Кнопка Мои проекты с видео (на своем месте в списке) -->
-            <a href="#" id="openProjectsBtn" class="big-button animate-in btn-anim-0">
-                <div class="button-text">
-                    <h2>Мои проекты</h2>
-                    <p>Посмотреть созданные работы и софт</p>
-                </div>
-                <div class="button-img">
-                    <video src="projects.mp4" autoplay muted loop playsinline></video>
-                </div>
-            </a>
-
             <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-1">
                 <div class="button-text">
                     <h2>Telegram Канал</h2>
@@ -742,6 +731,17 @@
                 <p>Остались вопросы? Свяжись со мной</p>
             </div>
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
+        </a>
+
+        <!-- Кнопка «Мои проекты» теперь строго под кнопкой «Написать в ЛС» -->
+        <a href="#" id="openProjectsBtn" class="big-button animate-in btn-projects">
+            <div class="button-text">
+                <h2>Мои проекты</h2>
+                <p>Посмотреть созданные работы и софт</p>
+            </div>
+            <div class="button-img">
+                <video src="projects.mp4" autoplay muted loop playsinline></video>
+            </div>
         </a>
 
         <div class="footer-wrap animate-in footer-anim">
