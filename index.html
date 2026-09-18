@@ -21,6 +21,75 @@
             scroll-behavior: smooth;
         }
 
+        /* --- ЭКРАН ТРЕВОГИ / АДМИН-ПАНЕЛИ --- */
+        .danger-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30, 0, 0, 0.96);
+            border: 6px solid #ff1e1e;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .danger-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+            animation: screen-shake 0.2s infinite ease-in-out;
+        }
+
+        @keyframes screen-shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-4px, 3px); }
+            50% { transform: translate(3px, -3px); }
+            75% { transform: translate(-2px, -2px); }
+            100% { transform: translate(2px, 2px); }
+        }
+
+        .danger-content {
+            font-family: monospace;
+            color: #ff4d4d;
+            padding: 20px;
+        }
+
+        .danger-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            color: #ff1e1e;
+            text-shadow: 0 0 15px rgba(255, 30, 30, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .danger-screen p {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #ffcccc;
+        }
+
+        .danger-sub {
+            font-size: 15px;
+            color: #ff8080;
+            margin-bottom: 25px !important;
+            font-weight: bold;
+        }
+
+        .danger-loader {
+            font-size: 14px;
+            color: #27c93f;
+            font-weight: bold;
+            animation: blink 0.6s infinite;
+        }
+
         /* Контейнер */
         .container {
             width: 100%;
@@ -31,6 +100,7 @@
             flex-direction: column;
             gap: 15px;
             z-index: 10;
+            transition: opacity 0.3s ease;
         }
 
         /* --- АНИМАЦИЯ ПАДАЮЩЕГО СНЕГА --- */
@@ -73,6 +143,9 @@
         .snowflake:nth-child(11) { left: 80%; width: 3px; height: 3px; animation-duration: 8s;  animation-delay: 0.8s;}
         .snowflake:nth-child(12) { left: 88%; width: 5px; height: 5px; animation-duration: 9s;  animation-delay: 3.5s;}
         .snowflake:nth-child(13) { left: 95%; width: 3px; height: 3px; animation-duration: 6s;  animation-delay: 1.2s;}
+        .snowflake:nth-child(14) { left: 15%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 5s; }
+        .snowflake:nth-child(15) { left: 45%; width: 2px; height: 2px; animation-duration: 7s;  animation-delay: 2.2s;}
+        .snowflake:nth-child(16) { left: 85%; width: 5px; height: 5px; animation-duration: 8.5s;animation-delay: 1.8s;}
 
         /* --- ШАПКА --- */
         .header-wrap {
@@ -127,6 +200,7 @@
             padding: 16px 22px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
+            cursor: text;
         }
 
         .terminal-header {
@@ -186,43 +260,81 @@
             font-family: monospace;
         }
 
-        .terminal-body {
-            font-family: monospace;
-            font-size: 13px;
-            color: #e0d0eb;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            max-height: 180px;
-            overflow-y: auto;
-        }
-
-        .terminal-line {
+        .terminal-body p {
             margin: 0;
+            font-size: 13px;
+            font-family: monospace;
+            color: #e0d0eb;
             word-break: break-word;
         }
 
-        .prompt {
+        .terminal-body .prompt {
             color: #27c93f;
             font-weight: bold;
         }
 
-        .terminal-input-line {
+        .secret-console {
+            max-height: 180px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(39, 201, 63, 0.3);
+            overflow-y: auto;
+        }
+
+        #commandHistory {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+
+        .history-item {
+            font-size: 12px;
+            font-family: monospace;
+            color: #e0d0eb;
+            word-break: break-word;
+        }
+
+        .history-item.resp {
+            color: #27c93f;
+            padding-left: 10px;
+            border-left: 2px solid #27c93f;
+        }
+
+        .console-input-line {
             display: flex;
             align-items: center;
             gap: 6px;
-            margin: 0;
         }
 
-        .terminal-input {
+        .console-input-line .prompt {
+            color: #27c93f;
+            font-weight: bold;
+            font-size: 12px;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+
+        #commandInput {
             background: transparent;
             border: none;
             outline: none;
-            color: #e0d0eb;
+            color: #27c93f;
             font-family: monospace;
-            font-size: 13px;
-            flex-grow: 1;
-            padding: 0;
+            font-size: 12px;
+            width: 100%;
+        }
+
+        .cursor {
+            display: inline-block;
+            color: #27c93f;
+            font-weight: bold;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* --- КНОПКИ --- */
@@ -247,8 +359,8 @@
             align-items: center;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .big-button:hover {
@@ -279,12 +391,9 @@
             flex-shrink: 0;
             border: 2px solid rgba(255, 255, 255, 0.15);
             background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .button-img img {
+        .button-img img, .button-img video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -378,16 +487,26 @@
 
         .header-anim    { animation-delay: 0.1s; }
         .terminal-anim { animation-delay: 0.2s; }
+        .btn-anim-0    { animation-delay: 0.25s; }
         .btn-anim-1    { animation-delay: 0.3s; }
         .btn-anim-2    { animation-delay: 0.4s; }
         .btn-anim-3    { animation-delay: 0.5s; }
         .bio-anim      { animation-delay: 0.6s; }
         .ls-anim       { animation-delay: 0.7s; }
-        .proj-anim     { animation-delay: 0.75s; }
         .footer-anim   { animation-delay: 0.8s; }
     </style>
 </head>
 <body>
+
+    <!-- Экран тревоги (админ-панель) -->
+    <div id="dangerScreen" class="danger-screen">
+        <div class="danger-content">
+            <h1 class="danger-title">🛑 ACCESS DENIED 🛑</h1>
+            <p>SECURITY PROTOCOL TRIGGERED</p>
+            <p class="danger-sub">А-я-яй, админ-панель может быть только у Lyshkin!</p>
+            <div class="danger-loader">ACCESS RESTRICTED...</div>
+        </div>
+    </div>
 
     <!-- Аудио плеер -->
     <audio id="bgMusic" src="background_track.mp3" loop></audio>
@@ -404,7 +523,7 @@
     <video src="left.mp4" autoplay muted loop playsinline class="side-video left-video"></video>
     <video src="right.mp4" autoplay muted loop playsinline class="side-video right-video"></video>
 
-    <div class="container">
+    <div class="container" id="mainContainer">
         <!-- Шапка -->
         <div class="header-wrap animate-in header-anim">
             <img src="header.png" alt="Lyshkin" class="header-img">
@@ -414,9 +533,9 @@
             </div>
         </div>
 
-        <!-- ТЕРМИНАЛ С КОМАНДАМИ -->
+        <!-- Терминал -->
         <div class="terminal-card animate-in terminal-anim">
-            <div class="terminal-header">
+            <div class="terminal-header" id="terminal-toggle">
                 <div class="terminal-dots">
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
@@ -428,11 +547,16 @@
                 </div>
                 <span class="terminal-title">root@lyshkin:~#</span>
             </div>
-            <div class="terminal-body" id="terminalBody">
-                <p class="terminal-line"><span class="prompt">></span> Привет! Напиши <b style="color:#b066ff;">help</b> для списка команд.</p>
-                <div class="terminal-input-line">
-                    <span class="prompt">></span>
-                    <input type="text" id="terminalInput" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+            <div class="terminal-body hacker-body">
+                <div class="terminal-lines"></div>
+                <p><span class="prompt">></span> <span class="typed-text"></span><span class="cursor">|</span></p>
+                
+                <div class="secret-console active" id="secretConsole">
+                    <div id="commandHistory"></div>
+                    <div class="console-input-line">
+                        <span class="prompt">root@lyshkin:~#</span>
+                        <input type="text" id="commandInput" placeholder="введи команду (help)..." autocomplete="off" spellcheck="false" autofocus>
+                    </div>
                 </div>
             </div>
         </div>
@@ -465,6 +589,17 @@
 
         <!-- Кнопки -->
         <main class="main-content">
+            <!-- Кнопка Мои проекты с видео -->
+            <a href="#" class="big-button animate-in btn-anim-0" onclick="alert('Тут будут твои проекты!'); return false;">
+                <div class="button-text">
+                    <h2>Мои проекты</h2>
+                    <p>Посмотреть созданные работы и софт</p>
+                </div>
+                <div class="button-img">
+                    <video src="projects.mp4" autoplay muted loop playsinline></video>
+                </div>
+            </a>
+
             <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-1">
                 <div class="button-text">
                     <h2>Telegram Канал</h2>
@@ -498,109 +633,68 @@
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
         </a>
 
-        <!-- КНОПКА «МОИ ПРОЕКТЫ» (Под ЛС) -->
-        <div id="openProjectsBtn" class="big-button animate-in proj-anim" style="border-color: rgba(176, 102, 255, 0.4); background: rgba(26, 18, 30, 0.95);">
-            <div class="button-text">
-                <h2>⚡ Мои проекты</h2>
-                <p>Pygame анимация сердца & код</p>
-            </div>
-            <div class="button-img" style="color: #b066ff; font-size: 22px; background: rgba(140, 82, 255, 0.2);">💻</div>
-        </div>
-
         <div class="footer-wrap animate-in footer-anim">
             <img src="footer.png" alt="Footer" class="footer-img">
         </div>
     </div>
 
-    <!-- Модальное окно проектов -->
-    <div id="projectsModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(11, 7, 13, 0.96); backdrop-filter: blur(12px); z-index: 10000; display: none; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box; overflow-y: auto;">
-        <div style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-            <h2 style="margin: 0; color: #fff; font-size: 20px; font-family: monospace;">⚡ Мои проекты & Видео</h2>
-            <button id="closeProjectsBtn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-family: monospace;">✕ Закрыть</button>
-        </div>
-
-        <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 20px;">
-            <!-- Проект: Pygame Сердце -->
-            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <h3 style="margin: 0; color: #fff; font-size: 18px;">Pygame Heart Animation</h3>
-                    <span style="font-size: 11px; font-family: monospace; background: rgba(140, 82, 255, 0.2); color: #b066ff; padding: 3px 8px; border-radius: 6px;">Python</span>
-                </div>
-                <p style="margin: 0 0 14px 0; color: #b5a4bd; font-size: 13px; line-height: 1.5;">
-                    Интерактивная визуализация на <b>Pygame</b>. Плавная процедурная отрисовка пульсирующего сердца, дополненная строчками любимой песни на фоне.
-                </p>
-
-                <!-- Видео проекта -->
-                <video src="my_project_video.mp4" controls muted playsinline style="width: 100%; max-height: 300px; border-radius: 12px; background: #000; object-fit: cover; margin-bottom: 14px;"></video>
-
-                <!-- Блок с кодом / словами песни -->
-                <div style="background: rgba(13, 10, 15, 0.9); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; font-family: monospace; font-size: 12px; color: #e0d0eb; line-height: 1.4;">
-                    <span style="color: #27c93f;"># Идея и концепт:</span><br>
-                    "И пусть в моем сердце горит огонь..."<br>
-                    <span style="color: #888;"># Рендеринг кривых Безье и частиц через Pygame surface.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Скрипты -->
     <script>
-        // Интерактивный терминал
-        const terminalBody = document.getElementById("terminalBody");
-        const terminalInput = document.getElementById("terminalInput");
+        const linesContainer = document.querySelector(".terminal-lines");
+        const typedTextSpan = document.querySelector(".typed-text");
+        
+        const hackerLogs = [
+            "[+] Bypassing firewall... [OK]",
+            "[+] Accessing Lyshkin mainframe...",
+            "[+] Injecting payload into core...",
+            "[+] Decrypting databases..."
+        ];
 
-        terminalInput.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                let command = terminalInput.value.trim().toLowerCase();
-                
-                // Создаем строку с введенной командой
-                let cmdLine = document.createElement("p");
-                cmdLine.className = "terminal-line";
-                cmdLine.innerHTML = `<span class="prompt">></span> ${escapeHtml(terminalInput.value)}`;
-                terminalBody.insertBefore(cmdLine, terminalInput.parentNode);
+        const textToPrint = `Привет!
+Тут все обо мне.
+Пишу бэкенд, создаю проекты, забираю своё.
+Python, FastAPI & Automations`;
 
-                // Обработка команд
-                let resLine = document.createElement("p");
-                resLine.className = "terminal-line";
-                resLine.style.color = "#b5a4bd";
+        let logIndex = 0;
 
-                if (command === "help") {
-                    resLine.innerHTML = "Доступные команды: <br>&nbsp;&nbsp;<b style='color:#27c93f'>about</b> - инфо о разработчике<br>&nbsp;&nbsp;<b style='color:#27c93f'>sudo</b> - права суперпользователя<br>&nbsp;&nbsp;<b style='color:#27c93f'>clear</b> - очистить терминал";
-                } else if (command === "about" || command === "abot") {
-                    resLine.innerHTML = "Lyshkin // 17 y.o. Backend Developer, Python & Automation.";
-                } else if (command.startsWith("sudo")) {
-                    resLine.innerHTML = "<span style='color:#ff5f56;'>Access denied:</span> Пользователь Lyshkin имеет абсолютный рут-доступ, а ты нет 😼";
-                } else if (command === "clear") {
-                    // Удаляем всё кроме строки ввода
-                    let lines = terminalBody.querySelectorAll(".terminal-line");
-                    lines.forEach(l => l.remove());
-                    terminalInput.value = "";
-                    terminalBody.scrollTop = terminalBody.scrollHeight;
-                    return;
-                } else if (command === "") {
-                    resLine.remove();
-                    terminalInput.value = "";
-                    return;
-                } else {
-                    resLine.innerHTML = `Команда не найдена: ${escapeHtml(command)}. Введите <b style='color:#27c93f'>help</b>`;
-                }
-
-                terminalBody.insertBefore(resLine, terminalInput.parentNode);
-                terminalInput.value = "";
-                terminalBody.scrollTop = terminalBody.scrollHeight;
+        function showLogs() {
+            if (logIndex < hackerLogs.length) {
+                const p = document.createElement("p");
+                p.className = "log-line";
+                p.textContent = hackerLogs[logIndex];
+                linesContainer.appendChild(p);
+                logIndex++;
+                setTimeout(showLogs, 250);
+            } else {
+                setTimeout(typeText, 400);
             }
-        });
-
-        function escapeHtml(text) {
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
 
-        // Клик по телу терминала фокусирует инпут
-        terminalBody.addEventListener("click", () => {
-            terminalInput.focus();
+        let charIndex = 0;
+        const typingSpeed = 35;
+
+        function typeText() {
+            if (charIndex < textToPrint.length) {
+                let char = textToPrint.charAt(charIndex);
+                if (char === '\n') {
+                    typedTextSpan.innerHTML += '<br>';
+                } else {
+                    typedTextSpan.innerHTML += char;
+                }
+                charIndex++;
+                setTimeout(typeText, typingSpeed);
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            setTimeout(showLogs, 500);
+            document.getElementById("commandInput").focus();
         });
 
-        // Музыкальный плеер
+        document.querySelector(".terminal-card").addEventListener("click", () => {
+            document.getElementById("commandInput").focus();
+        });
+
         const musicToggle = document.getElementById("musicToggle");
         const bgMusic = document.getElementById("bgMusic");
         let isMusicPlaying = false;
@@ -614,25 +708,79 @@
                 bgMusic.play().then(() => {
                     musicToggle.querySelector(".music-text").textContent = "МУЗЫКА: ВКЛ";
                     musicToggle.classList.add("playing");
-                }).catch(e => console.log(e));
+                }).catch(e => {
+                    console.log("Audio play blocked:", e);
+                });
             }
             isMusicPlaying = !isMusicPlaying;
         });
 
-        // Управление модальным окном проектов
-        const openProjectsBtn = document.getElementById("openProjectsBtn");
-        const closeProjectsBtn = document.getElementById("closeProjectsBtn");
-        const projectsModal = document.getElementById("projectsModal");
+        const commandInput = document.getElementById("commandInput");
+        const commandHistory = document.getElementById("commandHistory");
+        const dangerScreen = document.getElementById("dangerScreen");
+        const mainContainer = document.getElementById("mainContainer");
+        const secretConsole = document.getElementById("secretConsole");
 
-        openProjectsBtn.addEventListener("click", () => {
-            projectsModal.style.display = "flex";
-            document.body.style.overflow = "hidden";
+        commandInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                let rawVal = commandInput.value;
+                let cmd = rawVal.trim().toLowerCase();
+                let response = "";
+
+                let userLine = document.createElement("div");
+                userLine.className = "history-item";
+                userLine.innerHTML = `<span style="color: #27c93f;">root@lyshkin:~#</span> ${escapeHtml(rawVal)}`;
+                commandHistory.appendChild(userLine);
+
+                if (cmd.startsWith("sudo")) {
+                    response = "⚠️ ДОСТУП ЗАПРЕЩЕН!";
+                    dangerScreen.classList.add("active");
+                    mainContainer.style.opacity = "0";
+                    mainContainer.style.pointerEvents = "none";
+
+                    setTimeout(() => {
+                        dangerScreen.classList.remove("active");
+                        mainContainer.style.opacity = "1";
+                        mainContainer.style.pointerEvents = "auto";
+                        commandInput.focus();
+                    }, 3500);
+                } else {
+                    switch(cmd) {
+                        case "help":
+                            response = "Доступные команды:<br>- <b>about</b>: информация обо мне<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo</b>: запрос в админ-панель<br>- <b>clear</b>: очистить консоль";
+                            break;
+                        case "about":
+                            response = "17 лет. Backend-разработчик, создаю телеграм-ботов, приложения и автоматизации.";
+                            break;
+                        case "matrix":
+                            response = "Wake up, Neo... The Matrix has you. 🐇";
+                            document.body.style.filter = "hue-rotate(90deg) contrast(150%)";
+                            setTimeout(() => { document.body.style.filter = "none"; }, 4000);
+                            break;
+                        case "clear":
+                            commandHistory.innerHTML = "";
+                            commandInput.value = "";
+                            return;
+                        default:
+                            response = cmd ? `Команда '${escapeHtml(cmd)}' не найдена. Введите 'help'.` : "";
+                    }
+                }
+
+                if (response) {
+                    let respLine = document.createElement("div");
+                    respLine.className = "history-item resp";
+                    respLine.innerHTML = response;
+                    commandHistory.appendChild(respLine);
+                }
+
+                commandInput.value = "";
+                secretConsole.scrollTop = secretConsole.scrollHeight;
+            }
         });
 
-        closeProjectsBtn.addEventListener("click", () => {
-            projectsModal.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
     </script>
 </body>
 </html>
