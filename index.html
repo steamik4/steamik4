@@ -369,6 +369,7 @@
         .btn-anim-3    { animation-delay: 0.5s; }
         .bio-anim      { animation-delay: 0.6s; }
         .ls-anim       { animation-delay: 0.7s; }
+        .proj-anim     { animation-delay: 0.75s; }
         .footer-anim   { animation-delay: 0.8s; }
     </style>
 </head>
@@ -446,16 +447,7 @@
 
         <!-- Кнопки -->
         <main class="main-content">
-            <!-- КНОПКА «МОИ ПРОЕКТЫ» -->
-            <div id="openProjectsBtn" class="big-button animate-in btn-anim-1">
-                <div class="button-text">
-                    <h2>Мои проекты</h2>
-                    <p>Посмотреть софт, ботов и видео</p>
-                </div>
-                <div class="button-img" style="color: #b066ff; font-size: 22px;">💻</div>
-            </div>
-
-            <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-2">
+            <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-1">
                 <div class="button-text">
                     <h2>Telegram Канал</h2>
                     <p>Перейти в мой личный канал</p>
@@ -463,7 +455,7 @@
                 <div class="button-img"><img src="minion.png" alt="Миньон"></div>
             </a>
 
-            <a href="https://t.me/lyshkinstars_bot" target="_blank" class="big-button animate-in btn-anim-3">
+            <a href="https://t.me/lyshkinstars_bot" target="_blank" class="big-button animate-in btn-anim-2">
                 <div class="button-text">
                     <h2>Покупка Звезд в tg</h2>
                     <p>Бот для быстрого пополнения @Lyshkinstars_bot</p>
@@ -488,12 +480,21 @@
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
         </a>
 
+        <!-- КНОПКА «МОИ ПРОЕКТЫ» (Теперь под ЛС) -->
+        <div id="openProjectsBtn" class="big-button animate-in proj-anim" style="border-color: rgba(176, 102, 255, 0.4); background: rgba(26, 18, 30, 0.95);">
+            <div class="button-text">
+                <h2>⚡ Мои проекты</h2>
+                <p>Pygame анимация сердца & код</p>
+            </div>
+            <div class="button-img" style="color: #b066ff; font-size: 22px; background: rgba(140, 82, 255, 0.2);">💻</div>
+        </div>
+
         <div class="footer-wrap animate-in footer-anim">
             <img src="footer.png" alt="Footer" class="footer-img">
         </div>
     </div>
 
-    <!-- Модальное окно проектов (пустой шаблон под твои проекты) -->
+    <!-- Модальное окно проектов -->
     <div id="projectsModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(11, 7, 13, 0.96); backdrop-filter: blur(12px); z-index: 10000; display: none; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
             <h2 style="margin: 0; color: #fff; font-size: 20px; font-family: monospace;">⚡ Мои проекты & Видео</h2>
@@ -501,9 +502,25 @@
         </div>
 
         <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 20px;">
-            <!-- Сюда вставь карточки своих реальных проектов -->
-            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box; text-align: center;">
-                <p style="margin: 0; color: #b5a4bd; font-size: 14px; font-family: monospace;">Здесь скоро появятся твои проекты...</p>
+            <!-- Проект: Pygame Сердце -->
+            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                    <h3 style="margin: 0; color: #fff; font-size: 18px;">Pygame Heart Animation</h3>
+                    <span style="font-size: 11px; font-family: monospace; background: rgba(140, 82, 255, 0.2); color: #b066ff; padding: 3px 8px; border-radius: 6px;">Python</span>
+                </div>
+                <p style="margin: 0 0 14px 0; color: #b5a4bd; font-size: 13px; line-height: 1.5;">
+                    Интерактивная визуализация на <b>Pygame</b>. Плавная процедурная отрисовка пульсирующего сердца, дополненная строчками любимой песни на фоне.
+                </p>
+
+                <!-- Видео проекта -->
+                <video src="my_project_video.mp4" controls muted playsinline style="width: 100%; max-height: 300px; border-radius: 12px; background: #000; object-fit: cover; margin-bottom: 14px;"></video>
+
+                <!-- Блок с кодом / словами песни -->
+                <div style="background: rgba(13, 10, 15, 0.9); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; font-family: monospace; font-size: 12px; color: #e0d0eb; line-height: 1.4;">
+                    <span style="color: #27c93f;"># Идея и концепт:</span><br>
+                    "И пусть в моем сердце горит огонь..."<br>
+                    <span style="color: #888;"># Рендеринг кривых Безье и частиц через Pygame surface.</span>
+                </div>
             </div>
         </div>
     </div>
