@@ -8,6 +8,16 @@
 </head>
 <body>
 
+    <!-- Экран тревоги (скрыт по умолчанию) -->
+    <div id="dangerScreen" class="danger-screen">
+        <div class="danger-content">
+            <h1 class="danger-title">⚠️ SYSTEM FAILURE ⚠️</h1>
+            <p>CRITICAL SECURITY THREAT DETECTED</p>
+            <p class="danger-sub">UNAUTHORIZED DELETION OF SYSTEM CORE INITIATED</p>
+            <div class="danger-loader">REBOOTING MAINFRAME...</div>
+        </div>
+    </div>
+
     <!-- Эффект падающего снега на задний фон -->
     <div class="snow-container">
         <div class="snowflake"></div>
@@ -32,7 +42,7 @@
     <video src="left.mp4" autoplay muted loop playsinline class="side-video left-video"></video>
     <video src="right.mp4" autoplay muted loop playsinline class="side-video right-video"></video>
 
-    <div class="container">
+    <div class="container" id="mainContainer">
         <!-- Шапка -->
         <div class="header-wrap animate-in header-anim">
             <img src="header.png" alt="Lyshkin" class="header-img">
@@ -203,6 +213,8 @@ Backend & Code`;
         const secretConsole = document.getElementById("secretConsole");
         const commandInput = document.getElementById("commandInput");
         const commandHistory = document.getElementById("commandHistory");
+        const dangerScreen = document.getElementById("dangerScreen");
+        const mainContainer = document.getElementById("mainContainer");
 
         terminalToggle.addEventListener("click", () => {
             secretConsole.classList.toggle("active");
@@ -221,31 +233,44 @@ Backend & Code`;
                 userLine.innerHTML = `<span style="color: #27c93f;">root@lyshkin:~#</span> ${escapeHtml(commandInput.value)}`;
                 commandHistory.appendChild(userLine);
 
-                switch(cmd) {
-                    case "help":
-                        response = "Доступные команды: <br>- <b>about</b>: информация обо мне<br>- <b>skills</b>: стек технологий<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo rm -rf /</b>: удалить всё<br>- <b>clear</b>: очистить консоль";
-                        break;
-                    case "about":
-                        response = "17 лет. Бэкенд-разработчик, пишу код, создаю проекты.";
-                        break;
-                    case "skills":
-                        response = "Python, FastAPI, Flutter, C++, C#, JavaScript, Kotlin, Rust, Go, SQL.";
-                        break;
-                    case "matrix":
-                        response = "Wake up, Neo... The Matrix has you. 🐇";
-                        document.body.style.filter = "hue-rotate(90deg) contrast(150%)";
-                        setTimeout(() => { document.body.style.filter = "none"; }, 4000);
-                        break;
-                    case "sudo rm -rf /":
-                    case "sudo rm -rf":
-                        response = "⚠️ ВНИМАНИЕ: Самоуничтожение отменено протоколами безопасности Lyshkin.";
-                        break;
-                    case "clear":
-                        commandHistory.innerHTML = "";
-                        commandInput.value = "";
-                        return;
-                    default:
-                        response = cmd ? `Команда '${escapeHtml(cmd)}' не найдена. Введите 'help'.` : "";
+                // Проверка на команду удаления
+                if (cmd === "sudo rm -rf" || cmd === "sudo rm -rf /") {
+                    response = "⚠️ КРИТИЧЕСКАЯ УГРОЗА БЕЗОПАСНОСТИ!";
+                    
+                    // Показываем красную тревогу, скрываем контент
+                    dangerScreen.classList.add("active");
+                    mainContainer.style.opacity = "0";
+                    mainContainer.style.pointerEvents = "none";
+
+                    // Через 4 секунды возвращаем всё обратно
+                    setTimeout(() => {
+                        dangerScreen.classList.remove("active");
+                        mainContainer.style.opacity = "1";
+                        mainContainer.style.pointerEvents = "auto";
+                    }, 4000);
+                } else {
+                    switch(cmd) {
+                        case "help":
+                            response = "Доступные команды: <br>- <b>about</b>: информация обо мне<br>- <b>skills</b>: стек технологий<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo rm -rf</b>: угроза безопасности<br>- <b>clear</b>: очистить консоль";
+                            break;
+                        case "about":
+                            response = "17 лет. Бэкенд-разработчик, пишу код, создаю проекты.";
+                            break;
+                        case "skills":
+                            response = "Python, FastAPI, Flutter, C++, C#, JavaScript, Kotlin, Rust, Go, SQL.";
+                            break;
+                        case "matrix":
+                            response = "Wake up, Neo... The Matrix has you. 🐇";
+                            document.body.style.filter = "hue-rotate(90deg) contrast(150%)";
+                            setTimeout(() => { document.body.style.filter = "none"; }, 4000);
+                            break;
+                        case "clear":
+                            commandHistory.innerHTML = "";
+                            commandInput.value = "";
+                            return;
+                        default:
+                            response = cmd ? `Команда '${escapeHtml(cmd)}' не найдена. Введите 'help'.` : "";
+                    }
                 }
 
                 if (response) {
