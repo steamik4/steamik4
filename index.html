@@ -38,13 +38,19 @@
             <img src="header.png" alt="Lyshkin" class="header-img">
         </div>
 
-        <!-- Хакерский терминал Пентагона -->
+        <!-- Хакерский терминал Пентагона с индикатором сети -->
         <div class="terminal-card animate-in terminal-anim">
             <div class="terminal-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="terminal-title">root@lyshkin-main-server:~#</span>
+                <div class="terminal-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text">ONLINE</span>
+                </div>
+                <span class="terminal-title">root@lyshkin:~#</span>
             </div>
             <div class="terminal-body hacker-body">
                 <div class="terminal-lines"></div>
@@ -81,7 +87,7 @@
 
         <!-- Основной контент (кнопки) -->
         <main class="main-content">
-            <a href="https://t.me/+EkeKHs3abK8wOWMy" class="big-button animate-in btn-anim-1">
+            <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-1">
                 <div class="button-text">
                     <h2>Telegram Канал</h2>
                     <p>Перейти в мой личный канал</p>
@@ -91,7 +97,7 @@
                 </div>
             </a>
 
-            <a href="https://t.me/lyshkinstars_bot" class="big-button animate-in btn-anim-2">
+            <a href="https://t.me/lyshkinstars_bot" target="_blank" class="big-button animate-in btn-anim-2">
                 <div class="button-text">
                     <h2>Покупка Звезд</h2>
                     <p>Бот для быстрого пополнения</p>
@@ -101,7 +107,7 @@
                 </div>
             </a>
 
-            <a href="https://www.tiktok.com/@tertenw" class="big-button animate-in btn-anim-3">
+            <a href="https://www.tiktok.com/@tertenw" target="_blank" class="big-button animate-in btn-anim-3">
                 <div class="button-text">
                     <h2>TikTok</h2>
                     <p>Смотреть новые ролики</p>
@@ -113,7 +119,7 @@
         </main>
 
         <!-- Кнопка «Написать в ЛС» -->
-        <a href="https://t.me/lyshk1n" class="big-button animate-in ls-anim">
+        <a href="https://t.me/lyshk1n" target="_blank" class="big-button animate-in ls-anim">
             <div class="button-text">
                 <h2>Написать в ЛС</h2>
                 <p>Остались вопросы? Свяжись со мной</p>
@@ -134,7 +140,6 @@
         const linesContainer = document.querySelector(".terminal-lines");
         const typedTextSpan = document.querySelector(".typed-text");
         
-        // Псевдо-логи взлома перед основным текстом
         const hackerLogs = [
             "[+] Bypassing firewall... [OK]",
             "[+] Accessing Lyshkin mainframe...",
@@ -142,7 +147,6 @@
             "[+] Decrypting databases..."
         ];
 
-        // Твой текст с поддержкой многострочности
         const textToPrint = `Привет!
 Тут все обо мне
 Пишу код, создаю проекты, забираю своё.
@@ -150,7 +154,6 @@ Backend & Code`;
 
         let logIndex = 0;
 
-        // Шаг 1: Выводим хакерские логи
         function showLogs() {
             if (logIndex < hackerLogs.length) {
                 const p = document.createElement("p");
@@ -167,7 +170,6 @@ Backend & Code`;
         let charIndex = 0;
         const typingSpeed = 40;
 
-        // Шаг 2: Печатаем основной текст посимвольно с переносами строк
         function typeText() {
             if (charIndex < textToPrint.length) {
                 let char = textToPrint.charAt(charIndex);
@@ -183,7 +185,6 @@ Backend & Code`;
             }
         }
 
-        // Запуск всей цепочки при загрузке страницы
         window.addEventListener("DOMContentLoaded", () => {
             setTimeout(showLogs, 500);
         });
