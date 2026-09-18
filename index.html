@@ -458,7 +458,7 @@
             50% { opacity: 0; }
         }
 
-        /* --- КНОПКИ (С НЕОНОВОЙ ОБВОДКОЙ И ПЛАВНЫМ УВЕЛИЧЕНИЕМ) --- */
+        /* --- КНОПКИ --- */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -892,6 +892,10 @@ Python, FastAPI & Automations`;
         const mainContainer = document.getElementById("mainContainer");
         const secretConsole = document.getElementById("secretConsole");
 
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
         commandInput.addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
                 let rawVal = commandInput.value;
@@ -926,18 +930,23 @@ Python, FastAPI & Automations`;
                         case "matrix":
                             response = "Wake up, Neo... The Matrix has you. 🐇";
                             document.body.style.filter = "hue-rotate(90deg) contrast(150%)";
-                            setTimeout(() => { document.body.style.filter = "none"; }, 4000);
+                            setTimeout(() => { 
+                                document.body.style.filter = "none"; 
+                            }, 4000);
                             break;
                         case "clear":
                             commandHistory.innerHTML = "";
                             commandInput.value = "";
                             return;
+                        case "":
+                            response = "";
+                            break;
                         default:
-                            response = cmd ? `Команда '${escapeHtml(cmd)}' не найдена. Введите 'help'.` : "";
+                            response = `Команда не найдена: ${escapeHtml(cmd)}. Введите 'help' для справки.`;
                     }
                 }
 
-                if (response) {
+                if (response !== "") {
                     let respLine = document.createElement("div");
                     respLine.className = "history-item resp";
                     respLine.innerHTML = response;
@@ -948,10 +957,6 @@ Python, FastAPI & Automations`;
                 secretConsole.scrollTop = secretConsole.scrollHeight;
             }
         });
-
-        function escapeHtml(text) {
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
     </script>
 </body>
 </html>
