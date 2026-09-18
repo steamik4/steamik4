@@ -123,26 +123,13 @@
             </div>
         </a>
 
-        <!-- Вирусный IP-трекер / Терминальный статус -->
-        <div class="terminal-card animate-in" style="margin-top: 10px; margin-bottom: 10px;">
-            <div class="terminal-header">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-                <span class="terminal-title">sec_trace.sh // connection_info</span>
-            </div>
-            <div class="terminal-body">
-                <p><span class="prompt">root@Lyshkin:~$</span> <span id="ip-status-text">INITIALIZING SCAN...</span><span class="cursor">_</span></p>
-            </div>
-        </div>
-
         <!-- Подвал -->
         <div class="footer-wrap animate-in footer-anim">
             <img src="footer.png" alt="Footer" class="footer-img">
         </div>
     </div>
 
-    <!-- Скрипт хакерского взлома, печатной машинки и IP-трекера -->
+    <!-- Скрипт хакерского взлома и печатной машинки -->
     <script>
         const linesContainer = document.querySelector(".terminal-lines");
         const typedTextSpan = document.querySelector(".typed-text");
@@ -196,27 +183,9 @@ Backend & Code`;
             }
         }
 
-        // Шаг 3: Вирусный трекер IP и геопозиции
-        async function trackVisitor() {
-            const statusText = document.getElementById('ip-status-text');
-            try {
-                let response = await fetch('https://ipapi.co/json/');
-                let data = await response.json();
-                
-                let ip = data.ip || '127.0.0.1';
-                let city = data.city || 'Unknown Location';
-                let country = data.country_code || 'RU';
-                
-                statusText.innerHTML = `CONNECTED: <span style="color: #ffbd2e;">${ip}</span> | LOC: <span style="color: #27c93f;">${city}, ${country}</span> | STATUS: <span style="color: #ff5f56;">TRACKED 😎</span>`;
-            } catch (error) {
-                statusText.innerHTML = `CONNECTED: <span style="color: #ffbd2e;">127.0.0.1</span> | LOC: <span style="color: #27c93f;">LOCAL_HOST</span> | STATUS: <span style="color: #ff5f56;">SECURE 🔒</span>`;
-            }
-        }
-
         // Запуск всей цепочки при загрузке страницы
         window.addEventListener("DOMContentLoaded", () => {
             setTimeout(showLogs, 500);
-            setTimeout(trackVisitor, 1200);
         });
     </script>
 </body>
