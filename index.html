@@ -186,29 +186,43 @@
             font-family: monospace;
         }
 
-        .terminal-body p {
-            margin: 0;
-            font-size: 13px;
+        .terminal-body {
             font-family: monospace;
+            font-size: 13px;
             color: #e0d0eb;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+
+        .terminal-line {
+            margin: 0;
             word-break: break-word;
         }
 
-        .terminal-body .prompt {
+        .prompt {
             color: #27c93f;
             font-weight: bold;
         }
 
-        .cursor {
-            display: inline-block;
-            color: #27c93f;
-            font-weight: bold;
-            animation: blink 0.8s infinite;
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #e0d0eb;
+            font-family: monospace;
+            font-size: 13px;
+            flex-grow: 1;
+            padding: 0;
         }
 
         /* --- КНОПКИ --- */
@@ -400,7 +414,7 @@
             </div>
         </div>
 
-        <!-- Терминал -->
+        <!-- ТЕРМИНАЛ С КОМАНДАМИ -->
         <div class="terminal-card animate-in terminal-anim">
             <div class="terminal-header">
                 <div class="terminal-dots">
@@ -414,8 +428,12 @@
                 </div>
                 <span class="terminal-title">root@lyshkin:~#</span>
             </div>
-            <div class="terminal-body">
-                <p><span class="prompt">></span> <span class="typed-text"></span><span class="cursor" id="mainCursor">|</span></p>
+            <div class="terminal-body" id="terminalBody">
+                <p class="terminal-line"><span class="prompt">></span> Привет! Напиши <b style="color:#b066ff;">help</b> для списка команд.</p>
+                <div class="terminal-input-line">
+                    <span class="prompt">></span>
+                    <input type="text" id="terminalInput" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                </div>
             </div>
         </div>
 
@@ -480,7 +498,7 @@
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
         </a>
 
-        <!-- КНОПКА «МОИ ПРОЕКТЫ» (Теперь под ЛС) -->
+        <!-- КНОПКА «МОИ ПРОЕКТЫ» (Под ЛС) -->
         <div id="openProjectsBtn" class="big-button animate-in proj-anim" style="border-color: rgba(176, 102, 255, 0.4); background: rgba(26, 18, 30, 0.95);">
             <div class="button-text">
                 <h2>⚡ Мои проекты</h2>
@@ -527,34 +545,62 @@
 
     <!-- Скрипты -->
     <script>
-        const textToPrint = `Привет!
-Тут все обо мне.
-Пишу бэкенд, создаю проекты, забираю своё.
-Python, FastAPI & Automations`;
+        // Интерактивный терминал
+        const terminalBody = document.getElementById("terminalBody");
+        const terminalInput = document.getElementById("terminalInput");
 
-        const typedTextSpan = document.querySelector(".typed-text");
-        const mainCursor = document.getElementById("mainCursor");
-        let charIndex = 0;
+        terminalInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                let command = terminalInput.value.trim().toLowerCase();
+                
+                // Создаем строку с введенной командой
+                let cmdLine = document.createElement("p");
+                cmdLine.className = "terminal-line";
+                cmdLine.innerHTML = `<span class="prompt">></span> ${escapeHtml(terminalInput.value)}`;
+                terminalBody.insertBefore(cmdLine, terminalInput.parentNode);
 
-        function typeText() {
-            if (charIndex < textToPrint.length) {
-                let char = textToPrint.charAt(charIndex);
-                if (char === '\n') {
-                    typedTextSpan.innerHTML += '<br>';
+                // Обработка команд
+                let resLine = document.createElement("p");
+                resLine.className = "terminal-line";
+                resLine.style.color = "#b5a4bd";
+
+                if (command === "help") {
+                    resLine.innerHTML = "Доступные команды: <br>&nbsp;&nbsp;<b style='color:#27c93f'>about</b> - инфо о разработчике<br>&nbsp;&nbsp;<b style='color:#27c93f'>sudo</b> - права суперпользователя<br>&nbsp;&nbsp;<b style='color:#27c93f'>clear</b> - очистить терминал";
+                } else if (command === "about" || command === "abot") {
+                    resLine.innerHTML = "Lyshkin // 17 y.o. Backend Developer, Python & Automation.";
+                } else if (command.startsWith("sudo")) {
+                    resLine.innerHTML = "<span style='color:#ff5f56;'>Access denied:</span> Пользователь Lyshkin имеет абсолютный рут-доступ, а ты нет 😼";
+                } else if (command === "clear") {
+                    // Удаляем всё кроме строки ввода
+                    let lines = terminalBody.querySelectorAll(".terminal-line");
+                    lines.forEach(l => l.remove());
+                    terminalInput.value = "";
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                    return;
+                } else if (command === "") {
+                    resLine.remove();
+                    terminalInput.value = "";
+                    return;
                 } else {
-                    typedTextSpan.innerHTML += char;
+                    resLine.innerHTML = `Команда не найдена: ${escapeHtml(command)}. Введите <b style='color:#27c93f'>help</b>`;
                 }
-                charIndex++;
-                setTimeout(typeText, 35);
-            } else {
-                if (mainCursor) mainCursor.style.display = 'none';
-            }
-        }
 
-        window.addEventListener("DOMContentLoaded", () => {
-            setTimeout(typeText, 500);
+                terminalBody.insertBefore(resLine, terminalInput.parentNode);
+                terminalInput.value = "";
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
         });
 
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        // Клик по телу терминала фокусирует инпут
+        terminalBody.addEventListener("click", () => {
+            terminalInput.focus();
+        });
+
+        // Музыкальный плеер
         const musicToggle = document.getElementById("musicToggle");
         const bgMusic = document.getElementById("bgMusic");
         let isMusicPlaying = false;
