@@ -75,16 +75,16 @@ body {
     z-index: 10;
 }
 
-/* --- ШАПКА В КРАСИВОЙ РАМКЕ --- */
+/* --- ШАПКА --- */
 .header-wrap {
     width: 100%;
     text-align: center;
     line-height: 0;
     overflow: hidden;
-    border-radius: 18px; /* Совпадает со скруглением кнопок */
+    border-radius: 18px;
     background: rgba(26, 18, 30, 0.9);
-    border: 1px solid rgba(140, 82, 255, 0.3); /* Фиолетовая неоновая рамка */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(140, 82, 255, 0.15); /* Легкое свечение */
+    border: 1px solid rgba(140, 82, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(140, 82, 255, 0.15);
     box-sizing: border-box;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -101,7 +101,66 @@ body {
     display: block;
 }
 
-/* Кнопки */
+/* --- ТЕРМИНАЛ (ПЕЧАТНАЯ МАШИНКА) --- */
+.terminal-card {
+    background: rgba(13, 10, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 16px 22px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+    font-size: 11px;
+    color: #888;
+    margin-left: 6px;
+    font-family: monospace;
+}
+
+.terminal-body p {
+    margin: 0;
+    font-size: 13px;
+    font-family: monospace;
+    color: #e0d0eb;
+    word-break: break-word;
+}
+
+.terminal-body .prompt {
+    color: #27c93f;
+    font-weight: bold;
+}
+
+/* Мигающий курсор */
+.cursor {
+    display: inline-block;
+    color: #27c93f;
+    font-weight: bold;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- КНОПКИ --- */
 .main-content {
     display: flex;
     flex-direction: column;
@@ -161,7 +220,7 @@ body {
     object-fit: cover;
 }
 
-/* Блок с навыками */
+/* --- БЛОК С НАВЫКАМИ --- */
 .bio-card {
     background: rgba(26, 18, 30, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -209,57 +268,7 @@ body {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* --- КНОПКА ЗАКАЗА САЙТА --- */
-.order-card {
-    background: rgba(26, 18, 30, 0.9);
-    border: 1px solid rgba(140, 82, 255, 0.3);
-    padding: 18px 22px;
-    border-radius: 18px;
-    text-decoration: none;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-}
-
-.order-card:hover {
-    transform: scale(1.02);
-    background: rgba(42, 28, 48, 0.95);
-    border-color: rgba(140, 82, 255, 0.8);
-    box-shadow: 0 8px 25px rgba(140, 82, 255, 0.2);
-}
-
-.order-text h2 {
-    margin: 0 0 4px 0;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: #ffffff;
-}
-
-.order-text p {
-    margin: 0;
-    font-size: 12px;
-    color: #b5a4bd;
-}
-
-.order-icon {
-    font-size: 28px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(140, 82, 255, 0.15);
-    border: 2px solid rgba(140, 82, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-/* Подвал */
+/* --- ПОДВАЛ --- */
 .footer-wrap {
     width: 100%;
     text-align: center;
@@ -304,7 +313,7 @@ body {
     }
 }
 
-/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
+/* --- АНИМАЦИИ ПОЯВЛЕНИЯ --- */
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -321,9 +330,11 @@ body {
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.header-anim  { animation-delay: 0.1s; }
-.btn-anim-1   { animation-delay: 0.25s; }
-.btn-anim-2   { animation-delay: 0.4s; }
-.btn-anim-3   { animation-delay: 0.55s; }
-.order-anim   { animation-delay: 0.7s; }
-.footer-anim  { animation-delay: 0.85s; }
+.header-anim   { animation-delay: 0.1s; }
+.terminal-anim { animation-delay: 0.2s; }
+.btn-anim-1    { animation-delay: 0.3s; }
+.btn-anim-2    { animation-delay: 0.4s; }
+.btn-anim-3    { animation-delay: 0.5s; }
+.bio-anim      { animation-delay: 0.6s; }
+.ls-anim       { animation-delay: 0.7s; }
+.footer-anim   { animation-delay: 0.8s; }
