@@ -109,7 +109,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
 }
@@ -199,6 +199,56 @@ body {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* --- КНОПКА ЗАКАЗА САЙТА --- */
+.order-card {
+    background: rgba(26, 18, 30, 0.9);
+    border: 1px solid rgba(140, 82, 255, 0.3);
+    padding: 18px 22px;
+    border-radius: 18px;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+.order-card:hover {
+    transform: scale(1.02);
+    background: rgba(42, 28, 48, 0.95);
+    border-color: rgba(140, 82, 255, 0.8);
+    box-shadow: 0 8px 25px rgba(140, 82, 255, 0.2);
+}
+
+.order-text h2 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.order-text p {
+    margin: 0;
+    font-size: 12px;
+    color: #b5a4bd;
+}
+
+.order-icon {
+    font-size: 28px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(140, 82, 255, 0.15);
+    border: 2px solid rgba(140, 82, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
 /* Подвал */
 .footer-wrap {
     width: 100%;
@@ -265,4 +315,5 @@ body {
 .btn-anim-1   { animation-delay: 0.25s; }
 .btn-anim-2   { animation-delay: 0.4s; }
 .btn-anim-3   { animation-delay: 0.55s; }
-.footer-anim  { animation-delay: 0.7s; }
+.order-anim   { animation-delay: 0.7s; }
+.footer-anim  { animation-delay: 0.85s; }
