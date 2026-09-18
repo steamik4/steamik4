@@ -160,7 +160,7 @@ animation: blink 0.8s infinite;
 50% { opacity: 0; }
 }
 
-/* --- КНОПКИ И ГЛИТЧ-ЭФФЕКТ --- */
+/* --- КНОПКИ И ГЛИТЧ-ЭФФЕКТ С ФИОЛЕТОВЫМ НЕОНОМ --- */
 .main-content {
 display: flex;
 flex-direction: column;
@@ -185,15 +185,15 @@ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 box-sizing: border-box;
 }
 
-/* Неоновое свечение и скейл при наведении */
+/* Фиолетовое неоновое свечение и скейл при наведении */
 .big-button:hover {
 transform: translateY(-2px) scale(1.01);
 background: rgba(42, 28, 48, 0.95);
-border-color: rgba(0, 255, 102, 0.4);
-box-shadow: 0 0 15px rgba(0, 255, 102, 0.3), 0 0 30px rgba(0, 255, 102, 0.15);
+border-color: rgba(176, 102, 255, 0.8);
+box-shadow: 0 0 15px rgba(176, 102, 255, 0.5), 0 0 30px rgba(140, 82, 255, 0.3);
 }
 
-/* Элементы RGB Split для глитча */
+/* Глитч-слои (оставляем сам эффект глитча рабочим) */
 .big-button::before,
 .big-button::after {
 content: '';
@@ -226,20 +226,53 @@ animation: glitch-shake 0.2s infinite ease-in-out;
 }
 
 @keyframes glitch-anim-1 {
-0% { clip-path: inset(20% 0 50% 0); transform: translate(-3px, 2px); }
-20% { clip-path: inset(60% 0 10% 0); transform: translate(3px, -2px); }
-40% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, -1px); }
-60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 2px); }
-80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 1px); }
-100% { clip-path: inset(30% 0 20% 0); transform: translate(1px, -2px); }
+0% {
+clip-path: inset(20% 0 50% 0);
+transform: translate(-3px, 2px);
+}
+20% {
+clip-path: inset(60% 0 10% 0);
+transform: translate(3px, -2px);
+}
+40% {
+clip-path: inset(40% 0 30% 0);
+transform: translate(-2px, -1px);
+}
+60% {
+clip-path: inset(80% 0 5% 0);
+transform: translate(2px, 2px);
+}
+80% {
+clip-path: inset(10% 0 70% 0);
+transform: translate(-1px, 1px);
+}
+100% {
+clip-path: inset(30% 0 20% 0);
+transform: translate(1px, -2px);
+}
 }
 
 @keyframes glitch-anim-2 {
-0% { clip-path: inset(15% 0 55% 0); transform: translate(3px, -1px); }
-25% { clip-path: inset(70% 0 15% 0); transform: translate(-3px, 2px); }
-50% { clip-path: inset(35% 0 35% 0); transform: translate(2px, 1px); }
-75% { clip-path: inset(5% 0 85% 0); transform: translate(-2px, -2px); }
-100% { clip-path: inset(50% 0 25% 0); transform: translate(1px, 2px); }
+0% {
+clip-path: inset(15% 0 55% 0);
+transform: translate(3px, -1px);
+}
+25% {
+clip-path: inset(70% 0 15% 0);
+transform: translate(-3px, 2px);
+}
+50% {
+clip-path: inset(35% 0 35% 0);
+transform: translate(2px, 1px);
+}
+75% {
+clip-path: inset(5% 0 85% 0);
+transform: translate(-2px, -2px);
+}
+100% {
+clip-path: inset(50% 0 25% 0);
+transform: translate(1px, 2px);
+}
 }
 
 @keyframes glitch-shake {
