@@ -190,6 +190,7 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: #000;
+            position: relative;
         }
 
         .project-video-wrap video {
@@ -197,6 +198,30 @@
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .video-sound-toggle {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(13, 10, 15, 0.85);
+            border: 1px solid rgba(176, 102, 255, 0.4);
+            color: #e0d0eb;
+            padding: 8px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 5;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .video-sound-toggle.active {
+            border-color: #27c93f;
+            color: #27c93f;
         }
 
         /* --- АНИМАЦИЯ СНЕГА --- */
@@ -613,7 +638,11 @@
                 <h3>🖤 Скриптонит — это любовь</h3>
                 <p>Красивая анимация создания сердца из слов песни. Интерактивный визуальный проект с атмосферным дизайном.</p>
                 <div class="project-video-wrap">
-                    <video src="projects.mp4" autoplay muted loop playsinline></video>
+                    <video id="projectVideo" src="projects.mp4" autoplay muted loop playsinline></video>
+                    <button class="video-sound-toggle" id="videoSoundToggle">
+                        <span>🔊</span>
+                        <span class="video-sound-text">ЗВУК: ВЫКЛ</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -680,7 +709,7 @@
                 <span class="info-tag">17 y.o.</span>
                 <span class="info-tag">Backend Dev</span>
                 <span class="info-tag">Gym & Workout</span>
-                <span class="info-tag"> In Love 🤍</span>
+                <span class="info-tag">Taken Love 🤍</span>
             </div>
 
             <h3 style="margin-bottom: 8px;">Tech Stack</h3>
@@ -838,6 +867,23 @@ Python, FastAPI & Automations`;
                 });
             }
             isMusicPlaying = !isMusicPlaying;
+        });
+
+        /* Управление звуком видео в проектах */
+        const projectVideo = document.getElementById("projectVideo");
+        const videoSoundToggle = document.getElementById("videoSoundToggle");
+        const videoSoundText = videoSoundToggle.querySelector(".video-sound-text");
+
+        videoSoundToggle.addEventListener("click", () => {
+            if (projectVideo.muted) {
+                projectVideo.muted = false;
+                videoSoundText.textContent = "ЗВУК: ВКЛ";
+                videoSoundToggle.classList.add("active");
+            } else {
+                projectVideo.muted = true;
+                videoSoundText.textContent = "ЗВУК: ВЫКЛ";
+                videoSoundToggle.classList.remove("active");
+            }
         });
 
         const commandInput = document.getElementById("commandInput");
