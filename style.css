@@ -14,7 +14,7 @@ body {
     scroll-behavior: smooth;
 }
 
-/* --- ЭКРАН КРИТИЧЕСКОЙ УГРОЗЫ --- */
+/* --- ЭКРАН ТРЕВОГИ / АДМИН-ПАНЕЛИ --- */
 .danger-screen {
     position: fixed;
     top: 0;
@@ -70,9 +70,10 @@ body {
 }
 
 .danger-sub {
-    font-size: 13px;
+    font-size: 15px;
     color: #ff8080;
     margin-bottom: 25px !important;
+    font-weight: bold;
 }
 
 .danger-loader {
@@ -212,6 +213,7 @@ body {
     padding: 16px 22px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
+    cursor: text;
 }
 
 .terminal-header {
@@ -219,13 +221,7 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-    cursor: pointer;
     user-select: none;
-    transition: opacity 0.2s;
-}
-
-.terminal-header:hover {
-    opacity: 0.8;
 }
 
 .terminal-dots {
@@ -296,15 +292,8 @@ body {
     font-weight: bold;
 }
 
-/* Скрытая интерактивная консоль */
+/* Интерактивная консоль (всегда открыта) */
 .secret-console {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
-    margin-top: 0px;
-}
-
-.secret-console.active {
     max-height: 180px;
     margin-top: 10px;
     padding-top: 10px;
@@ -597,7 +586,7 @@ body {
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.header-anim   { animation-delay: 0.1s; }
+.header-anim    { animation-delay: 0.1s; }
 .terminal-anim { animation-delay: 0.2s; }
 .btn-anim-1    { animation-delay: 0.3s; }
 .btn-anim-2    { animation-delay: 0.4s; }
