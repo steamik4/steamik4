@@ -103,6 +103,102 @@
             transition: opacity 0.3s ease;
         }
 
+        /* --- СТРАНИЦА ПРОЕКТОВ (МОДАЛКА / ВИД) --- */
+        .projects-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #0b070d;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .projects-page.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .projects-container {
+            width: 100%;
+            max-width: 520px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 40px;
+        }
+
+        .back-button {
+            background: rgba(26, 18, 30, 0.9);
+            border: 1px solid rgba(176, 102, 255, 0.4);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            align-self: flex-start;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .back-button:hover {
+            background: rgba(42, 28, 48, 0.95);
+            border-color: rgba(176, 102, 255, 0.8);
+        }
+
+        .project-card-full {
+            background: rgba(26, 18, 30, 0.9);
+            border: 1px solid rgba(176, 102, 255, 0.3);
+            padding: 20px;
+            border-radius: 18px;
+            box-sizing: border-box;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(176, 102, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .project-card-full h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .project-card-full p {
+            margin: 0;
+            font-size: 14px;
+            color: #b5a4bd;
+            line-height: 1.5;
+        }
+
+        .project-video-wrap {
+            width: 100%;
+            height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #000;
+        }
+
+        .project-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         /* --- АНИМАЦИЯ ПАДАЮЩЕГО СНЕГА --- */
         .snow-container {
             position: fixed;
@@ -439,51 +535,6 @@
             font-family: monospace;
         }
 
-        /* --- СЕКЦИЯ ПРОЕКТОВ (СКРИПТОНИТ) --- */
-        .project-showcase {
-            background: rgba(26, 18, 30, 0.9);
-            border: 1px solid rgba(176, 102, 255, 0.3);
-            padding: 20px;
-            border-radius: 18px;
-            box-sizing: border-box;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(176, 102, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .project-showcase h3 {
-            margin: 0;
-            font-size: 18px;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .project-showcase p {
-            margin: 0;
-            font-size: 13px;
-            color: #b5a4bd;
-            line-height: 1.5;
-        }
-
-        .project-video-wrap {
-            width: 100%;
-            height: 240px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: #000;
-        }
-
-        .project-video-wrap video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
         /* --- ПОДВАЛ И ВИДЕО --- */
         .footer-wrap {
             width: 100%;
@@ -532,13 +583,13 @@
 
         .header-anim    { animation-delay: 0.1s; }
         .terminal-anim { animation-delay: 0.2s; }
+        .btn-anim-0    { animation-delay: 0.25s; }
         .btn-anim-1    { animation-delay: 0.3s; }
-        .btn-anim-2    { animation-delay: 0.35s; }
-        .btn-anim-3    { animation-delay: 0.4s; }
-        .ls-anim       { animation-delay: 0.45s; }
-        .proj-anim     { animation-delay: 0.5s; }
+        .btn-anim-2    { animation-delay: 0.4s; }
+        .btn-anim-3    { animation-delay: 0.5s; }
         .bio-anim      { animation-delay: 0.6s; }
-        .footer-anim   { animation-delay: 0.7s; }
+        .ls-anim       { animation-delay: 0.7s; }
+        .footer-anim   { animation-delay: 0.8s; }
     </style>
 </head>
 <body>
@@ -550,6 +601,21 @@
             <p>SECURITY PROTOCOL TRIGGERED</p>
             <p class="danger-sub">А-я-яй, админ-панель может быть только у Lyshkin!</p>
             <div class="danger-loader">ACCESS RESTRICTED...</div>
+        </div>
+    </div>
+
+    <!-- Страница «Мои проекты» (открывается по клику) -->
+    <div id="projectsPage" class="projects-page">
+        <div class="projects-container">
+            <button class="back-button" id="backButton">← Назад</button>
+            
+            <div class="project-card-full">
+                <h3>🖤 Скриптонит — это любовь</h3>
+                <p>Красивая анимация создания сердца из слов песни. Интерактивный визуальный проект с атмосферным дизайном.</p>
+                <div class="project-video-wrap">
+                    <video src="projects.mp4" autoplay muted loop playsinline></video>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -606,8 +672,45 @@
             </div>
         </div>
 
+        <!-- О себе -->
+        <div class="bio-card animate-in bio-anim">
+            <h3>About Me</h3>
+            <p>Backend developer. Building high-load systems, Telegram bots, APIs, and automating processes.</p>
+            <div class="skills-tags" style="margin-bottom: 14px;">
+                <span class="info-tag">17 y.o.</span>
+                <span class="info-tag">Backend Dev</span>
+                <span class="info-tag">Gym & Workout</span>
+                <span class="info-tag">Taken Love 🤍</span>
+            </div>
+
+            <h3 style="margin-bottom: 8px;">Tech Stack</h3>
+            <div class="skills-tags">
+                <span>Python</span>
+                <span>FastAPI</span>
+                <span>Docker</span>
+                <span>Git</span>
+                <span>Flutter</span>
+                <span>Kotlin</span>
+                <span>JavaScript</span>
+                <span>C++</span>
+                <span>Rust</span>
+                <span>SQL</span>
+            </div>
+        </div>
+
         <!-- Кнопки -->
         <main class="main-content">
+            <!-- Кнопка Мои проекты с видео (на своем месте в списке) -->
+            <a href="#" id="openProjectsBtn" class="big-button animate-in btn-anim-0">
+                <div class="button-text">
+                    <h2>Мои проекты</h2>
+                    <p>Посмотреть созданные работы и софт</p>
+                </div>
+                <div class="button-img">
+                    <video src="projects.mp4" autoplay muted loop playsinline></video>
+                </div>
+            </a>
+
             <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-1">
                 <div class="button-text">
                     <h2>Telegram Канал</h2>
@@ -640,41 +743,6 @@
             </div>
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
         </a>
-
-        <!-- Блок «Мои проекты» и проект «Скриптонит это любовь» (перенесен под кнопку «Написать в ЛС») -->
-        <div class="project-showcase animate-in proj-anim">
-            <h3>🖤 Скриптонит — это любовь</h3>
-            <p>Красивая анимация создания сердца из слов любимой песни. Интерактивный визуальный проект с атмосферным дизайном.</p>
-            <div class="project-video-wrap">
-                <video src="projects.mp4" autoplay muted loop playsinline></video>
-            </div>
-        </div>
-
-        <!-- О себе -->
-        <div class="bio-card animate-in bio-anim">
-            <h3>About Me</h3>
-            <p>Backend developer. Building high-load systems, Telegram bots, APIs, and automating processes.</p>
-            <div class="skills-tags" style="margin-bottom: 14px;">
-                <span class="info-tag">17 y.o.</span>
-                <span class="info-tag">Backend Dev</span>
-                <span class="info-tag">Gym & Workout</span>
-                <span class="info-tag">Taken Love 🤍</span>
-            </div>
-
-            <h3 style="margin-bottom: 8px;">Tech Stack</h3>
-            <div class="skills-tags">
-                <span>Python</span>
-                <span>FastAPI</span>
-                <span>Docker</span>
-                <span>Git</span>
-                <span>Flutter</span>
-                <span>Kotlin</span>
-                <span>JavaScript</span>
-                <span>C++</span>
-                <span>Rust</span>
-                <span>SQL</span>
-            </div>
-        </div>
 
         <div class="footer-wrap animate-in footer-anim">
             <img src="footer.png" alt="Footer" class="footer-img">
@@ -736,6 +804,20 @@ Python, FastAPI & Automations`;
 
         document.querySelector(".terminal-card").addEventListener("click", () => {
             document.getElementById("commandInput").focus();
+        });
+
+        /* Открытие и закрытие страницы «Мои проекты» */
+        const openProjectsBtn = document.getElementById("openProjectsBtn");
+        const projectsPage = document.getElementById("projectsPage");
+        const backButton = document.getElementById("backButton");
+
+        openProjectsBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            projectsPage.classList.add("active");
+        });
+
+        backButton.addEventListener("click", () => {
+            projectsPage.classList.remove("active");
         });
 
         const musicToggle = document.getElementById("musicToggle");
