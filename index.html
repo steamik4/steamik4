@@ -44,7 +44,7 @@
                 <span class="dot red"></span>
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
-                <span class="terminal-title">root@lyshkin-main-server:~#</span>
+                <span class="terminal-title">root@pentagon-main-server:~#</span>
             </div>
             <div class="terminal-body hacker-body">
                 <div class="terminal-lines"></div>
@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <!-- Кнопка «Написать в ЛС» (теперь точная копия остальных кнопок) -->
+        <!-- Кнопка «Написать в ЛС» -->
         <a href="https://t.me/lyshk1n" class="big-button animate-in ls-anim">
             <div class="button-text">
                 <h2>Написать в ЛС</h2>
@@ -121,27 +121,64 @@
         </div>
     </div>
 
-    <!-- Скрипт эффекта печатной машинки -->
+    <!-- Скрипт хакерского взлома и печатной машинки -->
     <script>
-        const textToPrint = "Привет!             
-            Тут все обо мне
-            Пишу код, создаю проекты, забираю своё.  
-            Backend & Code ";
+        const linesContainer = document.querySelector(".terminal-lines");
         const typedTextSpan = document.querySelector(".typed-text");
         
-        let charIndex = 0;
-        const typingSpeed = 45; // Скорость печати (мс на 1 букву)
+        // Псевдо-логи взлома перед основным текстом
+        const hackerLogs = [
+            "[+] Bypassing firewall... [OK]",
+            "[+] Accessing Pentagon mainframe...",
+            "[+] Injecting payload into core...",
+            "[+] Decrypting databases..."
+        ];
 
+        // Твой текст с поддержкой многострочности (используются обратные кавычки ` `)
+        const textToPrint = `Привет!
+Тут все обо мне
+Пишу код, создаю проекты, забираю своё.
+Backend & Code`;
+
+        let logIndex = 0;
+
+        // Шаг 1: Выводим хакерские логи
+        function showLogs() {
+            if (logIndex < hackerLogs.length) {
+                const p = document.createElement("p");
+                p.className = "log-line";
+                p.textContent = hackerLogs[logIndex];
+                linesContainer.appendChild(p);
+                logIndex++;
+                setTimeout(showLogs, 250); // Скорость появления строк логов
+            } else {
+                // Когда логи закончились, запускаем печать основного текста
+                setTimeout(typeText, 400);
+            }
+        }
+
+        let charIndex = 0;
+        const typingSpeed = 40; // Скорость печати букв (мс)
+
+        // Шаг 2: Печатаем основной текст посимвольно с переносами строк
         function typeText() {
             if (charIndex < textToPrint.length) {
-                typedTextSpan.textContent += textToPrint.charAt(charIndex);
+                let char = textToPrint.charAt(charIndex);
+                
+                if (char === '\n') {
+                    typedTextSpan.innerHTML += '<br>';
+                } else {
+                    typedTextSpan.innerHTML += char;
+                }
+                
                 charIndex++;
                 setTimeout(typeText, typingSpeed);
             }
         }
 
+        // Запуск всей цепочки при загрузке страницы
         window.addEventListener("DOMContentLoaded", () => {
-            setTimeout(typeText, 400);
+            setTimeout(showLogs, 500);
         });
     </script>
 </body>
