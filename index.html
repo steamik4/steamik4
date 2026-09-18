@@ -21,75 +21,6 @@
             scroll-behavior: smooth;
         }
 
-        /* --- ЭКРАН ТРЕВОГИ / АДМИН-ПАНЕЛИ --- */
-        .danger-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(30, 0, 0, 0.96);
-            border: 6px solid #ff1e1e;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease-in-out;
-            box-sizing: border-box;
-        }
-
-        .danger-screen.active {
-            opacity: 1;
-            pointer-events: auto;
-            animation: screen-shake 0.2s infinite ease-in-out;
-        }
-
-        @keyframes screen-shake {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-4px, 3px); }
-            50% { transform: translate(3px, -3px); }
-            75% { transform: translate(-2px, -2px); }
-            100% { transform: translate(2px, 2px); }
-        }
-
-        .danger-content {
-            font-family: monospace;
-            color: #ff4d4d;
-            padding: 20px;
-        }
-
-        .danger-title {
-            font-size: 32px;
-            font-weight: bold;
-            margin: 0 0 15px 0;
-            color: #ff1e1e;
-            text-shadow: 0 0 15px rgba(255, 30, 30, 0.8);
-            letter-spacing: 2px;
-        }
-
-        .danger-screen p {
-            font-size: 16px;
-            margin: 5px 0;
-            color: #ffcccc;
-        }
-
-        .danger-sub {
-            font-size: 15px;
-            color: #ff8080;
-            margin-bottom: 25px !important;
-            font-weight: bold;
-        }
-
-        .danger-loader {
-            font-size: 14px;
-            color: #27c93f;
-            font-weight: bold;
-            animation: blink 0.6s infinite;
-        }
-
         /* Контейнер */
         .container {
             width: 100%;
@@ -100,7 +31,6 @@
             flex-direction: column;
             gap: 15px;
             z-index: 10;
-            transition: opacity 0.3s ease;
         }
 
         /* --- АНИМАЦИЯ ПАДАЮЩЕГО СНЕГА --- */
@@ -143,9 +73,6 @@
         .snowflake:nth-child(11) { left: 80%; width: 3px; height: 3px; animation-duration: 8s;  animation-delay: 0.8s;}
         .snowflake:nth-child(12) { left: 88%; width: 5px; height: 5px; animation-duration: 9s;  animation-delay: 3.5s;}
         .snowflake:nth-child(13) { left: 95%; width: 3px; height: 3px; animation-duration: 6s;  animation-delay: 1.2s;}
-        .snowflake:nth-child(14) { left: 15%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 5s; }
-        .snowflake:nth-child(15) { left: 45%; width: 2px; height: 2px; animation-duration: 7s;  animation-delay: 2.2s;}
-        .snowflake:nth-child(16) { left: 85%; width: 5px; height: 5px; animation-duration: 8.5s;animation-delay: 1.8s;}
 
         /* --- ШАПКА --- */
         .header-wrap {
@@ -200,7 +127,6 @@
             padding: 16px 22px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
-            cursor: text;
         }
 
         .terminal-header {
@@ -273,58 +199,6 @@
             font-weight: bold;
         }
 
-        .secret-console {
-            max-height: 180px;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed rgba(39, 201, 63, 0.3);
-            overflow-y: auto;
-        }
-
-        #commandHistory {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            margin-bottom: 6px;
-        }
-
-        .history-item {
-            font-size: 12px;
-            font-family: monospace;
-            color: #e0d0eb;
-            word-break: break-word;
-        }
-
-        .history-item.resp {
-            color: #27c93f;
-            padding-left: 10px;
-            border-left: 2px solid #27c93f;
-        }
-
-        .console-input-line {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .console-input-line .prompt {
-            color: #27c93f;
-            font-weight: bold;
-            font-size: 12px;
-            font-family: monospace;
-            white-space: nowrap;
-        }
-
-        #commandInput {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #27c93f;
-            font-family: monospace;
-            font-size: 12px;
-            width: 100%;
-        }
-
         .cursor {
             display: inline-block;
             color: #27c93f;
@@ -360,6 +234,7 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
             transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
         }
 
         .big-button:hover {
@@ -390,6 +265,9 @@
             flex-shrink: 0;
             border: 2px solid rgba(255, 255, 255, 0.15);
             background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .button-img img {
@@ -496,16 +374,6 @@
 </head>
 <body>
 
-    <!-- Экран тревоги (админ-панель) -->
-    <div id="dangerScreen" class="danger-screen">
-        <div class="danger-content">
-            <h1 class="danger-title">🛑 ACCESS DENIED 🛑</h1>
-            <p>SECURITY PROTOCOL TRIGGERED</p>
-            <p class="danger-sub">А-я-яй, админ-панель может быть только у Lyshkin!</p>
-            <div class="danger-loader">ACCESS RESTRICTED...</div>
-        </div>
-    </div>
-
     <!-- Аудио плеер -->
     <audio id="bgMusic" src="background_track.mp3" loop></audio>
 
@@ -521,7 +389,7 @@
     <video src="left.mp4" autoplay muted loop playsinline class="side-video left-video"></video>
     <video src="right.mp4" autoplay muted loop playsinline class="side-video right-video"></video>
 
-    <div class="container" id="mainContainer">
+    <div class="container">
         <!-- Шапка -->
         <div class="header-wrap animate-in header-anim">
             <img src="header.png" alt="Lyshkin" class="header-img">
@@ -533,7 +401,7 @@
 
         <!-- Терминал -->
         <div class="terminal-card animate-in terminal-anim">
-            <div class="terminal-header" id="terminal-toggle">
+            <div class="terminal-header">
                 <div class="terminal-dots">
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
@@ -545,17 +413,8 @@
                 </div>
                 <span class="terminal-title">root@lyshkin:~#</span>
             </div>
-            <div class="terminal-body hacker-body">
-                <div class="terminal-lines"></div>
-                <p><span class="prompt">></span> <span class="typed-text"></span><span class="cursor">|</span></p>
-                
-                <div class="secret-console active" id="secretConsole">
-                    <div id="commandHistory"></div>
-                    <div class="console-input-line">
-                        <span class="prompt">root@lyshkin:~#</span>
-                        <input type="text" id="commandInput" placeholder="введи команду (help)..." autocomplete="off" spellcheck="false" autofocus>
-                    </div>
-                </div>
+            <div class="terminal-body">
+                <p><span class="prompt">></span> <span class="typed-text"></span><span class="cursor" id="mainCursor">|</span></p>
             </div>
         </div>
 
@@ -587,7 +446,16 @@
 
         <!-- Кнопки -->
         <main class="main-content">
-            <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-1">
+            <!-- КНОПКА «МОИ ПРОЕКТЫ» (Добавлено ровно это) -->
+            <div id="openProjectsBtn" class="big-button animate-in btn-anim-1">
+                <div class="button-text">
+                    <h2>Мои проекты</h2>
+                    <p>Посмотреть софт, ботов и видео</p>
+                </div>
+                <div class="button-img" style="color: #b066ff; font-size: 22px;">💻</div>
+            </div>
+
+            <a href="https://t.me/+EkeKHs3abK8wOWMy" target="_blank" class="big-button animate-in btn-anim-2">
                 <div class="button-text">
                     <h2>Telegram Канал</h2>
                     <p>Перейти в мой личный канал</p>
@@ -595,7 +463,7 @@
                 <div class="button-img"><img src="minion.png" alt="Миньон"></div>
             </a>
 
-            <a href="https://t.me/lyshkinstars_bot" target="_blank" class="big-button animate-in btn-anim-2">
+            <a href="https://t.me/lyshkinstars_bot" target="_blank" class="big-button animate-in btn-anim-3">
                 <div class="button-text">
                     <h2>Покупка Звезд в tg</h2>
                     <p>Бот для быстрого пополнения @Lyshkinstars_bot</p>
@@ -625,40 +493,38 @@
         </div>
     </div>
 
+    <!-- Модальное окно проектов (Добавлено ровно это) -->
+    <div id="projectsModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(11, 7, 13, 0.96); backdrop-filter: blur(12px); z-index: 10000; display: none; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box; overflow-y: auto;">
+        <div style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 style="margin: 0; color: #fff; font-size: 20px; font-family: monospace;">⚡ Мои проекты & Видео</h2>
+            <button id="closeProjectsBtn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-family: monospace;">✕ Закрыть</button>
+        </div>
+
+        <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 20px;">
+            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box;">
+                <h3 style="margin: 0 0 8px 0; color: #fff; font-size: 18px;">Мессенджер (Flet + FastAPI + VPS)</h3>
+                <p style="margin: 0 0 14px 0; color: #b5a4bd; font-size: 13px; line-height: 1.4;">Кроссплатформенный чат с бэкендом на сервере.</p>
+                <video src="my_project_video.mp4" controls muted playsinline style="width: 100%; max-height: 300px; border-radius: 12px; background: #000; object-fit: cover;"></video>
+            </div>
+
+            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box;">
+                <h3 style="margin: 0 0 8px 0; color: #fff; font-size: 18px;">@GapcjikStars_bot</h3>
+                <p style="margin: 0 0 14px 0; color: #b5a4bd; font-size: 13px; line-height: 1.4;">Telegram-бот для автоматической покупки звезд.</p>
+                <a href="https://t.me/GapcjikStars_bot" target="_blank" style="display: inline-block; background: #27c93f; color: #0b070d; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 12px; font-family: monospace;">Открыть бота →</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Скрипты -->
     <script>
-        const linesContainer = document.querySelector(".terminal-lines");
-        const typedTextSpan = document.querySelector(".typed-text");
-        
-        const hackerLogs = [
-            "[+] Bypassing firewall... [OK]",
-            "[+] Accessing Lyshkin mainframe...",
-            "[+] Injecting payload into core...",
-            "[+] Decrypting databases..."
-        ];
-
         const textToPrint = `Привет!
 Тут все обо мне.
 Пишу бэкенд, создаю проекты, забираю своё.
 Python, FastAPI & Automations`;
 
-        let logIndex = 0;
-
-        function showLogs() {
-            if (logIndex < hackerLogs.length) {
-                const p = document.createElement("p");
-                p.className = "log-line";
-                p.textContent = hackerLogs[logIndex];
-                linesContainer.appendChild(p);
-                logIndex++;
-                setTimeout(showLogs, 250);
-            } else {
-                setTimeout(typeText, 400);
-            }
-        }
-
+        const typedTextSpan = document.querySelector(".typed-text");
+        const mainCursor = document.getElementById("mainCursor");
         let charIndex = 0;
-        const typingSpeed = 35;
 
         function typeText() {
             if (charIndex < textToPrint.length) {
@@ -669,17 +535,14 @@ Python, FastAPI & Automations`;
                     typedTextSpan.innerHTML += char;
                 }
                 charIndex++;
-                setTimeout(typeText, typingSpeed);
+                setTimeout(typeText, 35);
+            } else {
+                if (mainCursor) mainCursor.style.display = 'none';
             }
         }
 
         window.addEventListener("DOMContentLoaded", () => {
-            setTimeout(showLogs, 500);
-            document.getElementById("commandInput").focus();
-        });
-
-        document.querySelector(".terminal-card").addEventListener("click", () => {
-            document.getElementById("commandInput").focus();
+            setTimeout(typeText, 500);
         });
 
         const musicToggle = document.getElementById("musicToggle");
@@ -695,79 +558,25 @@ Python, FastAPI & Automations`;
                 bgMusic.play().then(() => {
                     musicToggle.querySelector(".music-text").textContent = "МУЗЫКА: ВКЛ";
                     musicToggle.classList.add("playing");
-                }).catch(e => {
-                    console.log("Audio play blocked:", e);
-                });
+                }).catch(e => console.log(e));
             }
             isMusicPlaying = !isMusicPlaying;
         });
 
-        const commandInput = document.getElementById("commandInput");
-        const commandHistory = document.getElementById("commandHistory");
-        const dangerScreen = document.getElementById("dangerScreen");
-        const mainContainer = document.getElementById("mainContainer");
-        const secretConsole = document.getElementById("secretConsole");
+        // Управление модальным окном проектов (Чистый код)
+        const openProjectsBtn = document.getElementById("openProjectsBtn");
+        const closeProjectsBtn = document.getElementById("closeProjectsBtn");
+        const projectsModal = document.getElementById("projectsModal");
 
-        commandInput.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                let rawVal = commandInput.value;
-                let cmd = rawVal.trim().toLowerCase();
-                let response = "";
-
-                let userLine = document.createElement("div");
-                userLine.className = "history-item";
-                userLine.innerHTML = `<span style="color: #27c93f;">root@lyshkin:~#</span> ${escapeHtml(rawVal)}`;
-                commandHistory.appendChild(userLine);
-
-                if (cmd.startsWith("sudo")) {
-                    response = "⚠️ ДОСТУП ЗАПРЕЩЕН!";
-                    dangerScreen.classList.add("active");
-                    mainContainer.style.opacity = "0";
-                    mainContainer.style.pointerEvents = "none";
-
-                    setTimeout(() => {
-                        dangerScreen.classList.remove("active");
-                        mainContainer.style.opacity = "1";
-                        mainContainer.style.pointerEvents = "auto";
-                        commandInput.focus();
-                    }, 3500);
-                } else {
-                    switch(cmd) {
-                        case "help":
-                            response = "Доступные команды:<br>- <b>about</b>: информация обо мне<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo</b>: запрос в админ-панель<br>- <b>clear</b>: очистить консоль";
-                            break;
-                        case "about":
-                            response = " Backend-разработчик, создаю телеграм-ботов, приложения и автоматизации.";
-                            break;
-                        case "matrix":
-                            response = "Wake up, Neo... The Matrix has you. 🐇";
-                            document.body.style.filter = "hue-rotate(90deg) contrast(150%)";
-                            setTimeout(() => { document.body.style.filter = "none"; }, 4000);
-                            break;
-                        case "clear":
-                            commandHistory.innerHTML = "";
-                            commandInput.value = "";
-                            return;
-                        default:
-                            response = cmd ? `Команда '${escapeHtml(cmd)}' не найдена. Введите 'help'.` : "";
-                    }
-                }
-
-                if (response) {
-                    let respLine = document.createElement("div");
-                    respLine.className = "history-item resp";
-                    respLine.innerHTML = response;
-                    commandHistory.appendChild(respLine);
-                }
-
-                commandInput.value = "";
-                secretConsole.scrollTop = secretConsole.scrollHeight;
-            }
+        openProjectsBtn.addEventListener("click", () => {
+            projectsModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
         });
 
-        function escapeHtml(text) {
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
+        closeProjectsBtn.addEventListener("click", () => {
+            projectsModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        });
     </script>
 </body>
 </html>
