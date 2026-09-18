@@ -124,15 +124,15 @@
 
             <a href="https://t.me/lyshkinstars_bot" target="_blank" class="big-button animate-in btn-anim-2">
                 <div class="button-text">
-                    <h2>Покупка Звезд</h2>
-                    <p>Бот для быстрого пополнения @GapcjikStars_bot</p>
+                    <h2>Покупка Звезд в tg</h2>
+                    <p>Бот для быстрого пополнения @Lyshkinstars_bot</p>
                 </div>
                 <div class="button-img">
                     <img src="gengar.png" alt="Звездный бот">
                 </div>
             </a>
 
-            <a href="https://www.tiktok.com/@tertenw" target="_blank" class="big-button animate-in btn-anim-3">
+            <a href="https://www.tiktok.com/@tertonw" target="_blank" class="big-button animate-in btn-anim-3">
                 <div class="button-text">
                     <h2>TikTok</h2>
                     <p>Смотреть новые ролики</p>
@@ -235,7 +235,7 @@ Python, FastAPI & Automations`;
             isMusicPlaying = !isMusicPlaying;
         });
 
-        // Скрипт интерактивной консоли
+        // Скрипты интерактивной консоли
         const terminalToggle = document.getElementById("terminal-toggle");
         const secretConsole = document.getElementById("secretConsole");
         const commandInput = document.getElementById("commandInput");
@@ -260,7 +260,8 @@ Python, FastAPI & Automations`;
                 userLine.innerHTML = `<span style="color: #27c93f;">root@lyshkin:~#</span> ${escapeHtml(commandInput.value)}`;
                 commandHistory.appendChild(userLine);
 
-                if (cmd === "sudo rm -rf" || cmd === "sudo rm -rf /") {
+                // Триггер экрана смерти на любую форму команды sudo (просто sudo, sudo rm -rf и т.д.)
+                if (cmd.startsWith("sudo")) {
                     response = "⚠️ КРИТИЧЕСКАЯ УГРОЗА БЕЗОПАСНОСТИ!";
                     dangerScreen.classList.add("active");
                     mainContainer.style.opacity = "0";
@@ -274,16 +275,10 @@ Python, FastAPI & Automations`;
                 } else {
                     switch(cmd) {
                         case "help":
-                            response = "Доступные команды:<br>- <b>about</b>: информация обо мне<br>- <b>skills</b>: стек технологий<br>- <b>socials</b>: мои ссылки<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo rm -rf</b>: угроза безопасности<br>- <b>clear</b>: очистить консоль";
+                            response = "Доступные команды:<br>- <b>about</b>: информация обо мне<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo</b>: запрос прав администратора (админ-панель)<br>- <b>clear</b>: очистить консоль";
                             break;
                         case "about":
                             response = "17 лет. Backend-разработчик, создаю телеграм-ботов, приложения и автоматизации.";
-                            break;
-                        case "skills":
-                            response = "Python, FastAPI, Docker, Git, Flutter, Kotlin, JavaScript, C++, Rust, SQL.";
-                            break;
-                        case "socials":
-                            response = "Telegram Канал: <a href='https://t.me/+EkeKHs3abK8wOWMy' target='_blank' style='color: #27c93f;'>Кликабельно</a><br>Бот звезд: @GapcjikStars_bot";
                             break;
                         case "matrix":
                             response = "Wake up, Neo... The Matrix has you. 🐇";
