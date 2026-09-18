@@ -446,7 +446,7 @@
 
         <!-- Кнопки -->
         <main class="main-content">
-            <!-- КНОПКА «МОИ ПРОЕКТЫ» (Добавлено ровно это) -->
+            <!-- КНОПКА «МОИ ПРОЕКТЫ» -->
             <div id="openProjectsBtn" class="big-button animate-in btn-anim-1">
                 <div class="button-text">
                     <h2>Мои проекты</h2>
@@ -493,7 +493,7 @@
         </div>
     </div>
 
-    <!-- Модальное окно проектов (Добавлено ровно это) -->
+    <!-- Модальное окно проектов (пустой шаблон под твои проекты) -->
     <div id="projectsModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(11, 7, 13, 0.96); backdrop-filter: blur(12px); z-index: 10000; display: none; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box; overflow-y: auto;">
         <div style="width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
             <h2 style="margin: 0; color: #fff; font-size: 20px; font-family: monospace;">⚡ Мои проекты & Видео</h2>
@@ -501,16 +501,9 @@
         </div>
 
         <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 20px;">
-            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box;">
-                <h3 style="margin: 0 0 8px 0; color: #fff; font-size: 18px;">Мессенджер (Flet + FastAPI + VPS)</h3>
-                <p style="margin: 0 0 14px 0; color: #b5a4bd; font-size: 13px; line-height: 1.4;">Кроссплатформенный чат с бэкендом на сервере.</p>
-                <video src="my_project_video.mp4" controls muted playsinline style="width: 100%; max-height: 300px; border-radius: 12px; background: #000; object-fit: cover;"></video>
-            </div>
-
-            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box;">
-                <h3 style="margin: 0 0 8px 0; color: #fff; font-size: 18px;">@GapcjikStars_bot</h3>
-                <p style="margin: 0 0 14px 0; color: #b5a4bd; font-size: 13px; line-height: 1.4;">Telegram-бот для автоматической покупки звезд.</p>
-                <a href="https://t.me/GapcjikStars_bot" target="_blank" style="display: inline-block; background: #27c93f; color: #0b070d; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 12px; font-family: monospace;">Открыть бота →</a>
+            <!-- Сюда вставь карточки своих реальных проектов -->
+            <div style="background: rgba(26, 18, 30, 0.9); border: 1px solid rgba(140, 82, 255, 0.3); border-radius: 16px; padding: 20px; box-sizing: border-box; text-align: center;">
+                <p style="margin: 0; color: #b5a4bd; font-size: 14px; font-family: monospace;">Здесь скоро появятся твои проекты...</p>
             </div>
         </div>
     </div>
@@ -563,7 +556,7 @@ Python, FastAPI & Automations`;
             isMusicPlaying = !isMusicPlaying;
         });
 
-        // Управление модальным окном проектов (Чистый код)
+        // Управление модальным окном проектов
         const openProjectsBtn = document.getElementById("openProjectsBtn");
         const closeProjectsBtn = document.getElementById("closeProjectsBtn");
         const projectsModal = document.getElementById("projectsModal");
