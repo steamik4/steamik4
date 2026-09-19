@@ -650,13 +650,23 @@
 
     <div class="container" id="mainContainer">
         <!-- Шапка -->
+       <!-- Шапка -->
         <div class="header-wrap animate-in header-anim">
             <img src="header.png" alt="Lyshkin" class="header-img" id="headerImg">
             <div class="header-controls">
-                <button class="control-btn" id="themeToggle">
-                    <span>🍂</span>
+                <!-- Новый переключатель-ползунок вместо старой кнопки -->
+                <div class="theme-switch-wrapper">
                     <span id="themeText">ТЕМА: ЗИМА</span>
-                </button>
+                    <label class="theme-switch" for="themeToggle">
+                        <input type="checkbox" id="themeToggle">
+                        <div class="slider">
+                            <span class="icon winter-icon">❄️</span>
+                            <span class="icon autumn-icon">🍂</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Кнопка музыки остается без изменений -->
                 <button class="control-btn" id="musicToggle">
                     <span>🎵</span>
                     <span id="musicText">МУЗЫКА: ВЫКЛ</span>
