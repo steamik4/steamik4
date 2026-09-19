@@ -153,12 +153,10 @@
             transition: background 0.4s ease, border-radius 0.4s ease;
         }
 
-        /* Зимняя тема: круглые снежинки */
         body:not(.autumn-theme) .particle {
             border-radius: 50%;
         }
 
-        /* Осенняя тема: листочки (овальная форма с легким покачиванием) */
         body.autumn-theme .particle {
             border-radius: 40% 70% 30% 60%;
             width: 10px !important;
@@ -211,7 +209,12 @@
             height: 140px;
             object-fit: cover;
             display: block;
-            transition: opacity 0.3s ease;
+            transition: filter 0.4s ease, opacity 0.3s ease;
+        }
+
+        /* Автоматическое окрашивание шапки в осенней теме */
+        body.autumn-theme .header-img {
+            filter: sepia(60%) hue-rotate(330deg) saturate(120%) brightness(90%);
         }
 
         .header-controls {
@@ -455,6 +458,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: filter 0.4s ease;
+        }
+
+        /* Автоматическое окрашивание картинок внутри кнопок в осенней теме */
+        body.autumn-theme .button-img img {
+            filter: sepia(60%) hue-rotate(330deg) saturate(130%) brightness(90%);
         }
 
         /* --- БЛОК О СЕБЕ --- */
@@ -562,7 +571,12 @@
             height: 140px;
             object-fit: cover;
             display: block;
-            transition: opacity 0.3s ease;
+            transition: filter 0.4s ease, opacity 0.3s ease;
+        }
+
+        /* Автоматическое окрашивание футера в осенней теме */
+        body.autumn-theme .footer-img {
+            filter: sepia(60%) hue-rotate(330deg) saturate(120%) brightness(90%);
         }
 
         .side-video {
@@ -843,8 +857,6 @@ Python, FastAPI & Automations`;
         // Переключатель тем (Зима / Осень)
         const themeToggle = document.getElementById("themeToggle");
         const themeText = document.getElementById("themeText");
-        const headerImg = document.getElementById("headerImg");
-        const footerImg = document.getElementById("footerImg");
         let currentTheme = "winter";
 
         themeToggle.addEventListener("click", () => {
@@ -854,18 +866,12 @@ Python, FastAPI & Automations`;
                 themeToggle.querySelector("span").textContent = "❄️";
                 themeToggle.classList.add("active");
                 currentTheme = "autumn";
-
-                headerImg.src = "header_autumn.png";
-                footerImg.src = "footer_autumn.png";
             } else {
                 document.body.classList.remove("autumn-theme");
                 themeText.textContent = "ТЕМА: ЗИМА";
                 themeToggle.querySelector("span").textContent = "🍂";
                 themeToggle.classList.remove("active");
                 currentTheme = "winter";
-
-                headerImg.src = "header.png";
-                footerImg.src = "footer.png";
             }
         });
 
@@ -908,63 +914,44 @@ Python, FastAPI & Automations`;
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
 
-        commandInput.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                let rawVal = commandInput.value;
-                let cmd = rawVal.trim().toLowerCase();
-                let response = "";
+        commandInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                const val = commandInput.value.trim();
+                if (!val) return;
 
-                let userLine = document.createElement("div");
-                userLine.className = "history-item";
-                userLine.innerHTML = `<span style="color: var(--accent-color);">root@lyshkin:~#</span> ${escapeHtml(rawVal)}`;
-                commandHistory.appendChild(userLine);
+                const itemReq = document.createElement("div");
+                itemReq.className = "history-item";
+                itemReq.textContent = "root@lyshkin:~# " + val;
+                commandHistory.appendChild(itemReq);
 
-                if (cmd.startsWith("sudo")) {
-                    response = "⚠️ ДОСТУП ЗАПРЕЩЕН!";
+                const itemResp = document.createElement("div");
+                itemResp.className = "history-item resp";
+
+                const lowerVal = val.toLowerCase();
+
+                if (lowerVal === "help") {
+                    itemResp.innerHTML = "Доступные команды:<br>- about: инфа о разработчике<br>- theme: переключить тему<br>- clear: очистить консоль<br>- sudo: админ панель";
+                } else if (lowerVal === "about") {
+                    itemResp.textContent = "Lyshkin Bio — высокопроизводительная страница-визитка.";
+                } else if (lowerVal === "theme") {
+                    themeToggle.click();
+                    itemResp.textContent = "Тема успешно переключена!";
+                } else if (lowerVal === "clear") {
+                    commandHistory.innerHTML = "";
+                    itemResp.textContent = "";
+                } else if (lowerVal.startsWith("sudo")) {
+                    itemResp.textContent = "Запуск протокола безопасности...";
                     dangerScreen.classList.add("active");
-                    mainContainer.style.opacity = "0";
-                    mainContainer.style.pointerEvents = "none";
-
+                    mainContainer.style.filter = "blur(10px)";
                     setTimeout(() => {
                         dangerScreen.classList.remove("active");
-                        mainContainer.style.opacity = "1";
-                        mainContainer.style.pointerEvents = "auto";
-                        commandInput.focus();
-                    }, 3500);
+                        mainContainer.style.filter = "none";
+                    }, 3000);
                 } else {
-                    switch(cmd) {
-                        case "help":
-                            response = "Доступные команды:<br>- <b>about</b>: информация обо мне<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo</b>: запрос в админ-панель<br>- <b>clear</b>: очистить консоль";
-                            break;
-                        case "about":
-                            response = "17 лет. Backend-разработчик, создаю телеграм-ботов, приложения и автоматизации.";
-                            break;
-                        case "matrix":
-                            response = "Wake up, Neo... The Matrix has you. 🐇";
-                            document.body.style.filter = "hue-rotate(90deg) contrast(150%)";
-                            setTimeout(() => { 
-                                document.body.style.filter = "none"; 
-                            }, 4000);
-                            break;
-                        case "clear":
-                            commandHistory.innerHTML = "";
-                            commandInput.value = "";
-                            return;
-                        case "":
-                            response = "";
-                            break;
-                        default:
-                            response = `Команда не найдена: ${escapeHtml(cmd)}. Введите 'help' для справки.`;
-                    }
+                    itemResp.textContent = `Команда не найдена: ${val}. Введите help.`;
                 }
 
-                if (response !== "") {
-                    let respLine = document.createElement("div");
-                    respLine.className = "history-item resp";
-                    respLine.innerHTML = response;
-                    commandHistory.appendChild(respLine);
-                }
-
+                commandHistory.appendChild(itemResp);
                 commandInput.value = "";
                 secretConsole.scrollTop = secretConsole.scrollHeight;
             }
