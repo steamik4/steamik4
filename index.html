@@ -19,7 +19,7 @@
             --particle-color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Хэллоуинский вайб (вместо осенней темы) */
+        /* Хэллоуинский вайб */
         body.halloween-theme {
             --bg-color: #0d0602;
             --card-bg: rgba(30, 15, 8, 0.92);
@@ -31,7 +31,7 @@
             --btn-border: rgba(255, 102, 0, 0.25);
             --tag-bg: rgba(255, 102, 0, 0.1);
             --tag-border: rgba(255, 102, 0, 0.2);
-            --particle-color: rgba(255, 115, 0, 0.9); /* Жуткие оранжевые тыковки/искры */
+            --particle-color: rgba(255, 115, 0, 0.9);
         }
 
         body {
@@ -133,7 +133,7 @@
             transition: opacity 0.3s ease;
         }
 
-        /* --- ПОГОДА (ЖУТКИЕ ТЫКВЫ / ИСКРЫ) --- */
+        /* --- ПОГОДА --- */
         .weather-container {
             position: fixed;
             top: 0;
@@ -158,7 +158,6 @@
             border-radius: 50%;
         }
 
-        /* Форма жутких тыкв/огоньков в хэллоуинском стиле */
         body.halloween-theme .particle {
             border-radius: 30% 70% 50% 50%;
             width: 12px !important;
@@ -215,7 +214,6 @@
             transition: filter 0.4s ease, opacity 0.3s ease;
         }
 
-        /* Хэллоуинский фильтр для шапки */
         body.halloween-theme .header-img {
             filter: sepia(80%) hue-rotate(300deg) saturate(180%) brightness(85%);
         }
@@ -509,53 +507,52 @@
             font-family: monospace;
         }
 
-        /* --- ЭМБЛЕМА KALI LINUX ВМЕСТО СЕРДЦА --- */
+        /* --- САМОРИСУЮЩАЯСЯ ЭМБЛЕМА KALI LINUX --- */
         .kali-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 12px 0;
-            user-select: none;
+            padding: 10px 0;
         }
 
         .kali-dragon-logo {
-            width: 52px;
-            height: 52px;
-            cursor: pointer;
-            filter: drop-shadow(0 0 6px rgba(140, 82, 255, 0.6));
-            animation: kali-float 2.5s infinite ease-in-out;
-            transition: filter 0.3s ease, transform 0.3s ease;
+            width: 55px;
+            height: 55px;
+            filter: drop-shadow(0 0 8px rgba(140, 82, 255, 0.5));
+            animation: kali-glow 3s infinite ease-in-out;
         }
 
         body.halloween-theme .kali-dragon-logo {
             filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.8));
         }
 
-        .kali-dragon-logo:hover {
-            transform: scale(1.15);
+        @keyframes kali-glow {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(140, 82, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 14px rgba(140, 82, 255, 0.9)); }
         }
 
-        @keyframes kali-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
+        body.halloween-theme @keyframes kali-glow {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(255, 102, 0, 0.6)); }
+            50% { filter: drop-shadow(0 0 16px rgba(255, 102, 0, 1)); }
         }
 
-        .kali-dragon-logo.clicked-anim {
-            animation: kali-click-fx 0.4s ease;
+        /* Логика анимации саморисовки линий SVG */
+        .draw-path {
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 14;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
-        @keyframes kali-click-fx {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3) rotate(-10deg); }
-            100% { transform: scale(1); }
-        }
-
-        .kali-counter {
-            font-family: monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 6px;
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
         }
 
         /* --- ПОДВАЛ И ВИДЕО --- */
@@ -759,17 +756,14 @@
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
         </a>
 
-        <!-- Эмблема Kali Linux вместо сердечка -->
+        <!-- Саморисующаяся эмблема Kali Linux -->
         <div class="kali-section animate-in kali-anim">
-            <!-- Векторный дракончик Kali Linux -->
-            <svg class="kali-dragon-logo" id="kaliLogo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" title="Kali Linux Power">
-                <path fill="#ffffff" d="M380,240 c-20,-15 -55,-40 -95,-45 c-10,-1 -25,2 -35,8 c-40,25 -95,30 -145,15 c-15,-5 -30,-15 -45,-25 c5,25 20,50 40,65 c30,22 75,30 115,20 c20,-5 40,-15 55,-30 c15,15 35,25 55,30 c25,5 50,0 75,-15 c-10,-5 -20,-15 -25,-23 z"/>
-                <path fill="#ffffff" d="M195,190 c15,-25 40,-50 70,-70 c-20,-5 -40,-5 -60,0 c-35,10 -65,30 -85,60 c25,5 50,5 75,10 z"/>
-                <path fill="#ffffff" d="M130,165 c15,-15 35,-30 55,-40 c-15,0 -30,5 -45,15 c-5,3 -10,7 -10,12 c0,5 5,9 10,15 c-3,0 -7,-1 -10,-2 z"/>
-                <path fill="#ffffff" d="M110,185 c12,-10 25,-20 40,-27 c-10,3 -20,10 -30,18 c-3,3 -7,6 -10,9 z"/>
-                <path fill="#3b82f6" d="M390,230 c15,-10 30,-25 40,-40 c-15,15 -35,30 -55,40 c-15,7 -30,12 -45,15 c25,0 45,-5 60,-15 z"/>
+            <svg class="kali-dragon-logo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <path class="draw-path" d="M380,240 c-20,-15 -55,-40 -95,-45 c-10,-1 -25,2 -35,8 c-40,25 -95,30 -145,15 c-15,-5 -30,-15 -45,-25 c5,25 20,50 40,65 c30,22 75,30 115,20 c20,-5 40,-15 55,-30 c15,15 35,25 55,30 c25,5 50,0 75,-15 c-10,-5 -20,-15 -25,-23 z"/>
+                <path class="draw-path" d="M195,190 c15,-25 40,-50 70,-70 c-20,-5 -40,-5 -60,0 c-35,10 -65,30 -85,60 c25,5 50,5 75,10 z" style="animation-delay: 0.3s;" />
+                <path class="draw-path" d="M130,165 c15,-15 35,-30 55,-40 c-15,0 -30,5 -45,15 c-5,3 -10,7 -10,12 c0,5 5,9 10,15 c-3,0 -7,-1 -10,-2 z" style="animation-delay: 0.6s;" />
+                <path class="draw-path" d="M390,230 c15,-10 30,-25 40,-40 c-15,15 -35,30 -55,40 c-15,7 -30,12 -45,15 c25,0 45,-5 60,-15 z" style="animation-delay: 0.9s;" />
             </svg>
-            <div class="kali-counter" id="kaliCounter">root@kali: 17</div>
         </div>
 
         <div class="footer-wrap animate-in footer-anim">
@@ -884,18 +878,6 @@ Python, FastAPI & Automations`;
                 themeToggle.classList.remove("active");
                 currentTheme = "cyber";
             }
-        });
-
-        // Интерактивный логотип Kali Linux
-        const kaliLogo = document.getElementById("kaliLogo");
-        const kaliCounter = document.getElementById("kaliCounter");
-        let clicks = 17;
-
-        kaliLogo.addEventListener("click", () => {
-            kaliLogo.classList.add("clicked-anim");
-            setTimeout(() => kaliLogo.classList.remove("clicked-anim"), 400);
-            clicks++;
-            kaliCounter.textContent = `root@kali: ${clicks}`;
         });
 
         // Терминал команды
