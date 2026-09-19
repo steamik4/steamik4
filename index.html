@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lyshkin Bio</title>
+    <title>Lyshkin Bio - Halloween Edition</title>
     <style>
         :root {
             --bg-color: #0b070d;
@@ -19,18 +19,19 @@
             --particle-color: rgba(255, 255, 255, 0.8);
         }
 
-        body.autumn-theme {
-            --bg-color: #1c1815;
-            --card-bg: rgba(46, 39, 34, 0.92);
-            --card-border: rgba(212, 163, 115, 0.4);
-            --text-color: #fcf6ed;
-            --text-muted: #d4a373;
-            --accent-color: #bc6c25;
-            --button-hover-bg: rgba(212, 163, 115, 0.12);
-            --btn-border: rgba(212, 163, 115, 0.25);
-            --tag-bg: rgba(212, 163, 115, 0.1);
-            --tag-border: rgba(212, 163, 115, 0.2);
-            --particle-color: rgba(188, 108, 37, 0.85); /* Коричнево-бежевые листочки */
+        /* Хэллоуинский вайб (вместо осенней темы) */
+        body.halloween-theme {
+            --bg-color: #0d0602;
+            --card-bg: rgba(30, 15, 8, 0.92);
+            --card-border: rgba(255, 102, 0, 0.4);
+            --text-color: #fceddb;
+            --text-muted: #ff9944;
+            --accent-color: #ff5500;
+            --button-hover-bg: rgba(255, 102, 0, 0.12);
+            --btn-border: rgba(255, 102, 0, 0.25);
+            --tag-bg: rgba(255, 102, 0, 0.1);
+            --tag-border: rgba(255, 102, 0, 0.2);
+            --particle-color: rgba(255, 115, 0, 0.9); /* Жуткие оранжевые тыковки/искры */
         }
 
         body {
@@ -132,7 +133,7 @@
             transition: opacity 0.3s ease;
         }
 
-        /* --- ПОГОДА (СНЕЖИНКИ ИЛИ ЛИСТЬЯ) --- */
+        /* --- ПОГОДА (ЖУТКИЕ ТЫКВЫ / ИСКРЫ) --- */
         .weather-container {
             position: fixed;
             top: 0;
@@ -153,23 +154,25 @@
             transition: background 0.4s ease, border-radius 0.4s ease;
         }
 
-        body:not(.autumn-theme) .particle {
+        body:not(.halloween-theme) .particle {
             border-radius: 50%;
         }
 
-        body.autumn-theme .particle {
-            border-radius: 40% 70% 30% 60%;
-            width: 10px !important;
-            height: 14px !important;
-            box-shadow: 0 0 4px rgba(188, 108, 37, 0.4);
+        /* Форма жутких тыкв/огоньков в хэллоуинском стиле */
+        body.halloween-theme .particle {
+            border-radius: 30% 70% 50% 50%;
+            width: 12px !important;
+            height: 12px !important;
+            background: radial-gradient(circle, #ff7700 30%, #ff2200 80%);
+            box-shadow: 0 0 8px rgba(255, 85, 0, 0.8);
         }
 
         @keyframes fall {
             0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.85; }
-            50% { transform: translateY(50vh) translateX(25px) rotate(180deg); }
-            90% { opacity: 0.85; }
-            100% { transform: translateY(105vh) translateX(-15px) rotate(360deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            50% { transform: translateY(50vh) translateX(30px) rotate(180deg); }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(105vh) translateX(-20px) rotate(360deg); opacity: 0; }
         }
 
         .weather-container .particle:nth-child(1)  { left: 5%;  width: 4px; height: 4px; animation-duration: 7s;  animation-delay: 0s; }
@@ -212,9 +215,9 @@
             transition: filter 0.4s ease, opacity 0.3s ease;
         }
 
-        /* Автоматическое окрашивание шапки в осенней теме */
-        body.autumn-theme .header-img {
-            filter: sepia(60%) hue-rotate(330deg) saturate(120%) brightness(90%);
+        /* Хэллоуинский фильтр для шапки */
+        body.halloween-theme .header-img {
+            filter: sepia(80%) hue-rotate(300deg) saturate(180%) brightness(85%);
         }
 
         .header-controls {
@@ -303,9 +306,9 @@
         }
 
         @keyframes network-pulse {
-            0% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 0 0 rgba(188, 108, 37, 0.6); }
-            70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 6px rgba(188, 108, 37, 0); }
-            100% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 0 0 rgba(188, 108, 37, 0); }
+            0% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 0 0 rgba(255, 85, 0, 0.6); }
+            70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 6px rgba(255, 85, 0, 0); }
+            100% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 0 0 rgba(255, 85, 0, 0); }
         }
 
         .status-text {
@@ -428,7 +431,7 @@
             transform: translateY(-2px) scale(1.01);
             border-color: var(--accent-color);
             background: var(--button-hover-bg);
-            box-shadow: 0 0 20px rgba(188, 108, 37, 0.2);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.25);
         }
 
         .button-text h2 {
@@ -461,9 +464,8 @@
             transition: filter 0.4s ease;
         }
 
-        /* Автоматическое окрашивание картинок внутри кнопок в осенней теме */
-        body.autumn-theme .button-img img {
-            filter: sepia(60%) hue-rotate(330deg) saturate(130%) brightness(90%);
+        body.halloween-theme .button-img img {
+            filter: sepia(80%) hue-rotate(300deg) saturate(180%) brightness(85%);
         }
 
         /* --- БЛОК О СЕБЕ --- */
@@ -507,50 +509,53 @@
             font-family: monospace;
         }
 
-        /* --- СЕРДЦЕ ПЕРЕД ФУТЕРОМ (ПОСТОЯННАЯ ПУЛЬСАЦИЯ) --- */
-        .heart-section {
+        /* --- ЭМБЛЕМА KALI LINUX ВМЕСТО СЕРДЦА --- */
+        .kali-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 10px 0;
+            padding: 12px 0;
             user-select: none;
         }
 
-        .mono-heart {
-            font-size: 36px;
+        .kali-dragon-logo {
+            width: 52px;
+            height: 52px;
             cursor: pointer;
-            filter: grayscale(100%);
-            display: inline-block;
-            animation: continuous-pulse 1.2s infinite ease-in-out;
-            transition: filter 0.3s ease;
+            filter: drop-shadow(0 0 6px rgba(140, 82, 255, 0.6));
+            animation: kali-float 2.5s infinite ease-in-out;
+            transition: filter 0.3s ease, transform 0.3s ease;
         }
 
-        body.autumn-theme .mono-heart {
-            filter: sepia(100%) hue-rotate(5deg) saturate(300%) brightness(95%);
+        body.halloween-theme .kali-dragon-logo {
+            filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.8));
         }
 
-        @keyframes continuous-pulse {
+        .kali-dragon-logo:hover {
+            transform: scale(1.15);
+        }
+
+        @keyframes kali-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .kali-dragon-logo.clicked-anim {
+            animation: kali-click-fx 0.4s ease;
+        }
+
+        @keyframes kali-click-fx {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.3) rotate(-10deg); }
             100% { transform: scale(1); }
         }
 
-        .mono-heart.liked-anim {
-            animation: heart-click-fx 0.4s ease;
-        }
-
-        @keyframes heart-click-fx {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.5); }
-            100% { transform: scale(1); }
-        }
-
-        .heart-counter {
+        .kali-counter {
             font-family: monospace;
             font-size: 12px;
             color: var(--text-muted);
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         /* --- ПОДВАЛ И ВИДЕО --- */
@@ -574,9 +579,8 @@
             transition: filter 0.4s ease, opacity 0.3s ease;
         }
 
-        /* Автоматическое окрашивание футера в осенней теме */
-        body.autumn-theme .footer-img {
-            filter: sepia(60%) hue-rotate(330deg) saturate(120%) brightness(90%);
+        body.halloween-theme .footer-img {
+            filter: sepia(80%) hue-rotate(300deg) saturate(180%) brightness(85%);
         }
 
         .side-video {
@@ -617,7 +621,7 @@
         .btn-anim-3    { animation-delay: 0.5s; }
         .bio-anim      { animation-delay: 0.6s; }
         .ls-anim       { animation-delay: 0.7s; }
-        .heart-anim    { animation-delay: 0.75s; }
+        .kali-anim     { animation-delay: 0.75s; }
         .footer-anim   { animation-delay: 0.8s; }
     </style>
 </head>
@@ -636,7 +640,7 @@
     <!-- Аудио плеер -->
     <audio id="bgMusic" src="background_track.mp3" loop></audio>
 
-    <!-- Погода (Снег или Осенние листья) -->
+    <!-- Погода (Тыквенный хэллоуинский дождь) -->
     <div class="weather-container" id="weatherContainer">
         <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
@@ -654,8 +658,8 @@
             <img src="header.png" alt="Lyshkin" class="header-img" id="headerImg">
             <div class="header-controls">
                 <button class="control-btn" id="themeToggle">
-                    <span>🍂</span>
-                    <span id="themeText">ТЕМА: ЗИМА</span>
+                    <span>🎃</span>
+                    <span id="themeText">ВАЙБ: КИБЕР</span>
                 </button>
                 <button class="control-btn" id="musicToggle">
                     <span>🎵</span>
@@ -700,7 +704,7 @@
                 <span class="info-tag">17 y.o.</span>
                 <span class="info-tag">Backend Dev</span>
                 <span class="info-tag">Gym & Workout</span>
-                <span class="info-tag">In Love 🤍</span>
+                <span class="info-tag">Kali Linux 🐉</span>
             </div>
 
             <h3 style="margin-bottom: 8px;">Tech Stack</h3>
@@ -755,10 +759,17 @@
             <div class="button-img"><img src="myphoto.png" alt="Мое фото"></div>
         </a>
 
-        <!-- Сердце перед футером -->
-        <div class="heart-section animate-in heart-anim">
-            <div class="mono-heart" id="monoHeart" title="Лайкнуть">🖤</div>
-            <div class="heart-counter" id="heartCount">17</div>
+        <!-- Эмблема Kali Linux вместо сердечка -->
+        <div class="kali-section animate-in kali-anim">
+            <!-- Векторный дракончик Kali Linux -->
+            <svg class="kali-dragon-logo" id="kaliLogo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" title="Kali Linux Power">
+                <path fill="#ffffff" d="M380,240 c-20,-15 -55,-40 -95,-45 c-10,-1 -25,2 -35,8 c-40,25 -95,30 -145,15 c-15,-5 -30,-15 -45,-25 c5,25 20,50 40,65 c30,22 75,30 115,20 c20,-5 40,-15 55,-30 c15,15 35,25 55,30 c25,5 50,0 75,-15 c-10,-5 -20,-15 -25,-23 z"/>
+                <path fill="#ffffff" d="M195,190 c15,-25 40,-50 70,-70 c-20,-5 -40,-5 -60,0 c-35,10 -65,30 -85,60 c25,5 50,5 75,10 z"/>
+                <path fill="#ffffff" d="M130,165 c15,-15 35,-30 55,-40 c-15,0 -30,5 -45,15 c-5,3 -10,7 -10,12 c0,5 5,9 10,15 c-3,0 -7,-1 -10,-2 z"/>
+                <path fill="#ffffff" d="M110,185 c12,-10 25,-20 40,-27 c-10,3 -20,10 -30,18 c-3,3 -7,6 -10,9 z"/>
+                <path fill="#3b82f6" d="M390,230 c15,-10 30,-25 40,-40 c-15,15 -35,30 -55,40 c-15,7 -30,12 -45,15 c25,0 45,-5 60,-15 z"/>
+            </svg>
+            <div class="kali-counter" id="kaliCounter">root@kali: 17</div>
         </div>
 
         <div class="footer-wrap animate-in footer-anim">
@@ -773,7 +784,7 @@
         
         const hackerLogs = [
             "[+] Bypassing firewall... [OK]",
-            "[+] Accessing Lyshkin mainframe...",
+            "[+] Initializing Kali Linux tools...",
             "[+] Injecting payload into core...",
             "[+] Decrypting databases..."
         ];
@@ -854,53 +865,37 @@ Python, FastAPI & Automations`;
             }
         });
 
-        // Переключатель тем (Зима / Осень)
+        // Переключатель тем (Кибер / Хэллоуин)
         const themeToggle = document.getElementById("themeToggle");
         const themeText = document.getElementById("themeText");
-        let currentTheme = "winter";
+        let currentTheme = "cyber";
 
         themeToggle.addEventListener("click", () => {
-            if (currentTheme === "winter") {
-                document.body.classList.add("autumn-theme");
-                themeText.textContent = "ТЕМА: ОСЕНЬ";
-                themeToggle.querySelector("span").textContent = "❄️";
+            if (currentTheme === "cyber") {
+                document.body.classList.add("halloween-theme");
+                themeText.textContent = "ВАЙБ: ХЭЛЛОУИН";
+                themeToggle.querySelector("span").textContent = "🦇";
                 themeToggle.classList.add("active");
-                currentTheme = "autumn";
+                currentTheme = "halloween";
             } else {
-                document.body.classList.remove("autumn-theme");
-                themeText.textContent = "ТЕМА: ЗИМА";
-                themeToggle.querySelector("span").textContent = "🍂";
+                document.body.classList.remove("halloween-theme");
+                themeText.textContent = "ВАЙБ: КИБЕР";
+                themeToggle.querySelector("span").textContent = "🎃";
                 themeToggle.classList.remove("active");
-                currentTheme = "winter";
+                currentTheme = "cyber";
             }
         });
 
-        // Интерактивное сердце
-        const monoHeart = document.getElementById("monoHeart");
-        const heartCount = document.getElementById("heartCount");
-        let likes = 17;
-        let liked = false;
+        // Интерактивный логотип Kali Linux
+        const kaliLogo = document.getElementById("kaliLogo");
+        const kaliCounter = document.getElementById("kaliCounter");
+        let clicks = 17;
 
-        monoHeart.addEventListener("click", () => {
-            monoHeart.classList.add("liked-anim");
-            setTimeout(() => monoHeart.classList.remove("liked-anim"), 400);
-
-            if (!liked) {
-                likes++;
-                liked = true;
-                monoHeart.textContent = "❤️";
-                monoHeart.style.filter = "none";
-            } else {
-                likes--;
-                liked = false;
-                monoHeart.textContent = "🖤";
-                if (currentTheme === "autumn") {
-                    monoHeart.style.filter = "sepia(100%) hue-rotate(5deg) saturate(300%) brightness(95%)";
-                } else {
-                    monoHeart.style.filter = "grayscale(100%)";
-                }
-            }
-            heartCount.textContent = likes;
+        kaliLogo.addEventListener("click", () => {
+            kaliLogo.classList.add("clicked-anim");
+            setTimeout(() => kaliLogo.classList.remove("clicked-anim"), 400);
+            clicks++;
+            kaliCounter.textContent = `root@kali: ${clicks}`;
         });
 
         // Терминал команды
@@ -909,10 +904,6 @@ Python, FastAPI & Automations`;
         const dangerScreen = document.getElementById("dangerScreen");
         const mainContainer = document.getElementById("mainContainer");
         const secretConsole = document.getElementById("secretConsole");
-
-        function escapeHtml(text) {
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
 
         commandInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
@@ -930,12 +921,12 @@ Python, FastAPI & Automations`;
                 const lowerVal = val.toLowerCase();
 
                 if (lowerVal === "help") {
-                    itemResp.innerHTML = "Доступные команды:<br>- about: инфа о разработчике<br>- theme: переключить тему<br>- clear: очистить консоль<br>- sudo: админ панель";
+                    itemResp.innerHTML = "Доступные команды:<br>- about: инфа о разработчике<br>- theme: переключить вайб<br>- clear: очистить консоль<br>- sudo: админ панель";
                 } else if (lowerVal === "about") {
                     itemResp.textContent = "Lyshkin Bio — высокопроизводительная страница-визитка.";
                 } else if (lowerVal === "theme") {
                     themeToggle.click();
-                    itemResp.textContent = "Тема успешно переключена!";
+                    itemResp.textContent = "Вайб успешно переключен!";
                 } else if (lowerVal === "clear") {
                     commandHistory.innerHTML = "";
                     itemResp.textContent = "";
