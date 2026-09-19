@@ -574,7 +574,7 @@
             <h3 style="margin-bottom: 8px;">Tech Stack</h3>
             <div class="skills-tags">
                 <span>Python</span>
-                <span>FastFiles</span>
+                <span>FastAPI</span>
                 <span>Docker</span>
                 <span>Git</span>
                 <span>Flutter</span>
@@ -751,10 +751,13 @@ Python, FastAPI & Automations`;
                 } else {
                     switch(cmd) {
                         case "help":
-                            response = "Доступные команды:<br>- <b>about</b>: информация обо мне<br>- <b>matrix</b>: войти в матрицу<br>- <b>sudo</b>: запрос в админ-панель<br>- <b>clear</b>: очистить консоль";
+                            response = "Доступные команды:<br>- <b>about</b>: информация обо мне<br>- <b>matrix</b>: войти в матрицу<br>- <b>stack</b>: посмотреть технологии<br>- <b>sudo</b>: запрос в админ-панель<br>- <b>clear</b>: очистить консоль";
                             break;
                         case "about":
                             response = "17 лет. Backend-разработчик, создаю телеграм-ботов, приложения и автоматизации.";
+                            break;
+                        case "stack":
+                            response = "Python, FastAPI, Docker, Git, Flutter, Kotlin, JavaScript, C++, Rust, SQL.";
                             break;
                         case "matrix":
                             response = "Wake up, Neo... The Matrix has you. 🐇";
