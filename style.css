@@ -176,11 +176,10 @@ body {
     display: block;
 }
 
-/* Кнопка управления музыкой внутри шапки */
+/* --- КНОПКИ В ШАПКЕ --- */
 .music-control {
     position: absolute;
     bottom: 10px;
-    right: 10px;
     background: rgba(13, 10, 15, 0.85);
     border: 1px solid rgba(140, 82, 255, 0.4);
     padding: 6px 12px;
@@ -206,6 +205,16 @@ body {
 .music-control.playing {
     border-color: #27c93f;
     color: #27c93f;
+}
+
+/* Кнопка Темы — перемещаем влево */
+#themeToggle {
+    left: 10px;
+}
+
+/* Кнопка Музыки — оставляем справа */
+#musicToggle {
+    right: 10px;
 }
 
 /* --- ТЕРМИНАЛ И ИНДИКАТОР СЕТИ --- */
